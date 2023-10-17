@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+<title>Insert title here</title>
+<style type="text/css">
+body {
+	background-color: #ddd;
+	text-align: center;
+}
+
+.abc {
+	color: black;
+}
+
+.abc:hover {
+	color: #CE0805;
+}
+
+.headers {
+	top: 0;
+	width: 100%;
+	position: fixed;
+	background: #2196F3;
+	color: #fff;
+	height: 60px
+}
+
+body {
+	padding-top: 60px;
+	background-image: url('photo/homes.jpg');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+}
+
+.but:hover {
+	background-color: #E8C9F7;
+}
+
+.but {
+	border-radius: 5PX;
+}
+
+.sa {
+	margin-left: 50%;
+}
+
+.dropdown-menu {
+	background-color: #E3E1E7;
+}
+</style>
+</head>
+<body>
+	<div class="headers">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container-fluid headers">
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+						<li><h1 style="margin-left: 120px">Square Hospital Ltd</h1></li>
+						<li class="nav-item dropdown" style="margin-left: 10px; margin-top: 20px"><a class="nav-link dropdown-toggle" ref="#" style="color: white;" id="navbarDropdown " role="button" data-bs-toggle="dropdown" aria-expanded="false">Department </a>
+							<ul class="dropdown-menu " aria-labelledby="navbarDropdown">
+								<li><a class="abc" href="medicineHome">Medicine</a></li>
+								<li><a class="abc" href="receptionsHome">Receptions</a></li>
+								<li><a class="abc" href="doctorLogin">Doctors</a></li>
+								<li><a class="abc" href="diagnosticHome">Diagnostics </a></li>
+								<li><a class="abc" href="admissionHome">Admission </a></li>
+								<li><a class="abc" href="nurseHome">Nurse </a></li>
+								<li><a class="abc" href="billingHome">Billing</a></li>
+								<li><a class="abc" href="loginPage">Admin</a></li>
+							</ul></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</div>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

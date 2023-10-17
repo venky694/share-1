@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Find Book</title>
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	$(function() {
+		$("#header").load("admissionHeader");
+		$("#footer").load("footer");
+	});
+</script>
+
+<style type="text/css">
+tr td {
+	text-align: left;
+	font-size: 20px
+}
+
+.submitbt {
+	margin-top: 25px;
+	margin-bottom: 25px;
+	background-color: #72ADF7;
+}
+
+.submitbt:hover {
+	background-color: #94FA64;
+}
+</style>
+</head>
+<body>
+	<div id="header"></div>
+	<h3>Admission Form</h3>
+	<hr>
+	<form method="POST" action="searchPatients" style="margin-left: auto; margin-right: auto;">
+		<input style="height: 28px" type="text" name="id" placeholder="Enter patient id" /> <input type="submit" value="Search" />
+	</form>
+	<h4 th:text="${msg}"></h4>
+
+	<div style="width: 66%; margin: auto; background-color: white">
+
+
+		<table style="width: 100%; margin-left: 20px" th:each="patient:${patient}">
+			<tr>
+				<td colspan="6" style="font-size: 26px; color: blue;"><u>Patient Information</u></td>
+
+			</tr>
+			<tr>
+				<td style="font-size: 24px; width: 165px">Patient ID</td>
+				<td style="font-size: 24px">:</td>
+				<td colspan="3" style="text-align: left; font-size: 24px;" th:text="${patient.id}"></td>
+			</tr>
+			<tr>
+				<td>Patient Name</td>
+				<td>:</td>
+				<td style="width: 250px" th:text=${patient.name}></td>
+
+				<td style="width: 140px">Gender</td>
+				<td>:</td>
+				<td th:text=${patient.gender}></td>
+			</tr>
+			<tr>
+				<td>Mobile number</td>
+				<td>:</td>
+				<td th:text="${patient.mobile}"></td>
+				<td>Age</td>
+				<td>:</td>
+				<td th:text="${patient.age}"></td>
+			</tr>
+
+			<tr>
+				<td>Address</td>
+				<td>:</td>
+				<td th:text="${ patient.address}"></td>
+				<td>Email</td>
+				<td>:</td>
+				<td th:text="${ patient.mobile}"></td>
+			</tr>
+			<tr>
+				<td>Consultant Name</td>
+				<td>:</td>
+				<td th:text="${ patient.doctor}"></td>
+				<td>Disease Name</td>
+				<td>:</td>
+				<td th:text="${ patient.problem}"></td>
+			</tr>
+		</table>
+		<form action="admissionBill" method="post">
+			<table style="width: 100%; margin-left: 20px" th:each="bedinfo:${bedinfo}">
+				<tr>
+					<td colspan="6" style="font-size: 26px; color: blue;"><u>Admission Information</u></td>
+
+				</tr>
+
+				<tr>
+					<td style="width: 150px">Bed No</td>
+					<td style="width: 10px">:</td>
+					<td style="width: 250px" th:text="${bedinfo.bed_no}"></td>
+					<td style="width: 140px">Room No</td>
+					<td style="width: 10px">:</td>
+					<td th:text="${bedinfo.room_no}"></td>
+				</tr>
+				<tr>
+					<td>Floor</td>
+					<td>:</td>
+					<td th:text="${bedinfo.floor}"></td>
+					<td>Type</td>
+					<td>:</td>
+					<td th:text="${bedinfo.type}"></td>
+				</tr>
+
+				<tr>
+					<td>Primary Deposit</td>
+					<td>:</td>
+					<td><input style="text-align: center; width: 250px" type="number" name="primary_deposit" required="required"></td>
+				</tr>
+
+				<tr>
+					<td colspan="6" style="text-align: center;"><input class="submitbt" type="submit" value="Save & Generate Admission Bill"></td>
+
+				</tr>
+			</table>
+		</form>
+	</div>
+	<div id="footer"></div>
+</body>
+</html>

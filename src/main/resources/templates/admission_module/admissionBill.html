@@ -1,0 +1,209 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Prescription</title>
+
+<style type="text/css">
+tr td {
+	text-align: left;
+	font-size: 18px;
+}
+
+.abc tr td {
+	color: black;
+	text-align:center;
+	border: 1px solid gray
+}
+
+.hrrr {
+	height: 5px;
+	background-color: red;
+	border: none;
+}
+
+.col {
+	padding: 5px;
+}
+</style>
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	$(function() {
+		$("#header").load("admissionHeader");
+		$("#footer").load("footer");
+	});
+	
+	function printDiv(divName) {
+		var printContents = document.getElementById(divName).innerHTML;
+		var originalContents = document.body.innerHTML;
+
+		document.body.innerHTML = printContents;
+
+		window.print();
+
+		document.body.innerHTML = originalContents;
+	}
+</script>
+</head>
+<body>
+	<div id="header"></div>
+	<div id="printableArea" style="height: auto; width: 70%; height: 1010px; margin: auto; background-color: white; padding: 25px">
+
+		<div style="text-align: center; margin-left: 20px">
+
+			<p style="font-size: 35px; font-weight: bold; margin-bottom: 0px; color: blue;">Square Hospital Ltd</p>
+			<p style="font-size: 15px; font-weight: bold;">Panthopath, Dhaka, Bangladesh</p>
+			<p style="font-size: 22px; font-weight: bold; margin-bottom: 0px">Admission Bill</p>
+		</div>
+		<h4 style="text-align: center; margin-bottom: 0px; text-align: right;" th:text="${todayDate}"></h4>
+
+		<h4 style="text-align: right;"></h4>
+
+
+		<table style="width: 100%" th:each="object:${patient}">
+			<tr>
+				<td colspan="3" style="font-size: 25px"><u>Patient Details :</u></td>
+				<td colspan="3" style="font-size: 25px; text-align: right;"></td>
+
+
+			</tr>
+			<tr>
+
+				<td style="width: 150px">Patient Id</td>
+				<td style="width: 10px">:</td>
+				<td style="width: 300px" th:text=${object.id}></td>
+				<td style="width: 100px">Patient Age</td>
+				<td style="width: 10px">:</td>
+				<td th:text=${object.age}></td>
+
+			</tr>
+			<tr>
+				<td>Patient Name</td>
+				<td>:</td>
+				<td th:text=${object.name}></td>
+				<td>Gender</td>
+				<td>:</td>
+				<td th:text=${object.gender}></td>
+			</tr>
+
+			<tr>
+				<td>Mobile Number</td>
+				<td>:</td>
+				<td th:text=${object.mobile}></td>
+				<td>Address</td>
+				<td>:</td>
+				<td th:text=${object.address}></td>
+			</tr>
+		</table >
+		<table style="width: 100%;" th:each="bedinfo:${bedinfo}" >
+			<tr>
+				<td style="width: 150px">Bed No</td>
+				<td style="width: 10px">:</td>
+				<td style="width: 300px" th:text="${bedinfo.bed_no}"></td>
+				<td style="width: 100px">Room No</td>
+				<td style="width: 10px">:</td>
+				<td th:text="${bedinfo.room_no}"></td>
+			</tr>
+
+			<tr>
+				<td>Floor</td>
+				<td>:</td>
+				<td th:text="${bedinfo.floor}"></td>
+				<td>Type</td>
+				<td>:</td>
+				<td th:text="${bedinfo.type}"></td>
+			</tr>
+		</table>
+		<table  class="abc"  border="1px solid gray"   style="width: 100%">
+			<tr >
+				<td style="width: 120px">Serial No</td>
+				<td>Description</td>
+				<td style="width: 120px">Amount</td>
+			</tr>
+			<tr>
+				<td>01</td>
+				<td style="text-align: left">Primary Deposit </td>
+				<td th:text="${primaryDeposit}"></td>
+			</tr>
+			<tr>
+				<td>02</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>03</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>04</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>05</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td colspan="2">Total</td>
+				<td th:text="${primaryDeposit}"></td>
+			</tr>
+			<tr>
+				<td colspan="2">Paid in cash</td>
+				<td th:text="${primaryDeposit}"></td>
+			</tr>
+			<tr>
+				<td colspan="2">Balance</td>
+				<td><span style="border-bottom: double;">Nill</span></td>
+			</tr>
+		</table>
+
+		<div style="height:150px;">
+		</div>
+		<div style="width: 200px; margin-left: 530px">
+			<table>
+				<tr>
+					<td style="text-align: center;"><SPAN STYLE="text-decoration:overline"> Bill Prepared By </SPAN></td>
+				</tr>
+				<tr>
+					<td style="text-align: center;">Md Maharam ali</td>
+				</tr>
+				<tr>
+					<td style="text-align: center;">Senior Receptionis</td>
+				</tr>
+			</table>
+		</div>
+		
+		<h4 style="text-align: center; margin-bottom: 0px">_________________________________________________________________________________________</h4>
+
+		<div style="width: 80px; height: 100px; float: left;">
+			<img th:src="@{/photo/logo.png}" class="card-img-top" alt="photo" height="80px" width="80px">
+		</div>
+		<div style="width: 550px; height: 100px; float: left;">
+			<table>
+				<tr>
+					<td style="font-size: 25px; font-weight: bold; color: blue;">Square Hospital Ltd</td>
+				</tr>
+				<tr>
+					<td style="">Panthopath, Dhaka, Bangladesh</td>
+				</tr>
+				<tr>
+					<td>Tel: 0036 8542 8563 Moble: 01710279904 Hotline : 01303634525</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+	<div>
+		<input style="margin-top: 30px" type="button" onclick="printDiv('printableArea')" value="Print and Save" />
+	</div>
+
+	<h4 th:text="${msg}"></h4>
+
+	<div id="footer"></div>
+</body>
+</html>

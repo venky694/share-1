@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Implement Sticky Header and Footer with CSS</title>
+<style>
+    /* Add some padding on document's body to prevent the content
+    to go underneath the header and footer */
+    body{        
+        padding-bottom:30px;
+    }
+    .fixed-footer{
+        width: 100%;
+        height:30px;
+        position:fixed;     
+        background: #333;
+        color: #fff;
+    }
+    .fixed-footer{
+        bottom: 0;
+    }
+    .container{
+        width: 80%;
+        margin: 0 auto; /* Center the DIV horizontally */
+    }
+    nav a{
+        color: #fff;
+        text-decoration: none;
+        padding: 7px 25px;
+        display: inline-block;
+    }
+</style>
+</head>
+<body>
+       
+    <div class="fixed-footer">
+        <div style="text-align: center;" class="container">Copyright &copy; 2021 Square Hospital Ltd</div>        
+    </div>
+</body>
+</html>

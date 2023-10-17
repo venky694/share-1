@@ -1,0 +1,88 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Add New Book</title>
+
+<style type="text/css">
+tr td {
+	text-align: left;
+}
+
+td input {
+	width: 300px;
+	height: 35px;
+	font-size: 15px;
+}
+table tr td{
+padding-top: 20px;
+}
+</style>
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	$(function() {
+		$("#header").load("header");
+		$("#footer").load("footer");
+	});
+</script>
+</head>
+<body>
+	<div id="header"></div>
+	<h3 style="text-align: center;">Add New Medicine</h3>
+	<hr>
+	<div style="margin: auto; width: 45%; padding-left: 60px; background-color:#D5F5F2" >
+		<form action="showAll" method="post">
+			<table>
+				<tr>
+					<td>ID</td>
+					<td>:</td>
+					<td><input style="text-align: center;" type="text" name="id" required="required" th:value="${medicineID}" readonly="readonly"></td>
+				</tr>
+				<tr >
+					<td>Medicine name</td>
+					<td>:</td>
+					<td><input type="text" name="name" required="required"></td>
+				</tr>
+				<tr >
+					<td>Category</td>
+					<td>:</td>
+					<td><input type="text" name="category" required="required"></td>
+				</tr>
+				<tr >
+					<td>Manufacturer Name</td>
+					<td>:</td>
+					<td><input type="text" name="manufacturer" required="required"></td>
+				</tr>
+				<tr>
+					<td>Quantity</td>
+					<td>:</td>
+					<td><input type="text" name="quantity" required="required"></td>
+				</tr>
+				<tr>
+					<td>Unit Price</td>
+					<td>:</td>
+					<td><input type="text" name="price" required="required"></td>
+				</tr>
+				
+				<tr>
+					<td>Re-order level Quantity</td>
+					<td>:</td>
+					<td><input type="text" name="reorder_level" required="required"></td>
+				</tr>
+				<tr>
+					<td colspan="3" style="text-align: center; padding-top: 25px">
+						<input style="width: 100px; background-color: #4CD6F1;"
+						type="submit" value="Save">
+					</td>
+				</tr>
+			</table>
+		</form>
+		<br>
+		<h4 th:text="${msg}"></h4>
+	</div>
+	<div id="footer"></div>
+</body>
+</html>

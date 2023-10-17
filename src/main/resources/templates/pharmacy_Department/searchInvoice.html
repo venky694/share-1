@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Search Invoice</title>
+
+<style type="text/css">
+.b {
+	text-align: left;
+}
+
+tr td {
+	border: 1px solid gray;
+	padding: 3px;
+}
+
+tr th {
+	border: 1px solid black;
+}
+
+.update {
+	background-color: orange;
+}
+
+.delete {
+	background-color: red;
+}
+
+.delete:hover {
+	background-color: aqua;
+}
+
+.update:hover {
+	background-color: aqua;
+}
+</style>
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	$(function() {
+		$("#headers").load("header");
+		$("#footer").load("footer");
+	});
+</script>
+</head>
+<body>
+	<div id="headers"></div>
+	<h2>Inside sale</h2>
+	<hr>
+	<br>
+	<form method="POST" action="searchMedicineIvoice" style="margin-left: auto; margin-right: auto;">
+		<input style="height: 28px" type="number" name="voucher_no" required="required" maxlength="11"  placeholder="Enter voucher no" /> <input type="submit" value="Search" />
+	</form>
+	<h3 th:text="${msg}"></h3>
+
+	<div id="footer"></div>
+</body>
+</html>

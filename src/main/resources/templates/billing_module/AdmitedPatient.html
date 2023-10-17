@@ -1,0 +1,81 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Admitted Patient</title>
+
+<style type="text/css">
+
+tr td {
+	border: 1px solid gray;
+	padding: 3px;
+	
+}
+
+tr th {
+	border: 1px solid gray;
+}
+.update{
+background-color: orange;
+}
+.delete{
+background-color: red;
+}
+.delete:hover {
+	background-color: aqua;
+}
+.update:hover {
+	background-color: aqua;
+}
+</style>
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	$(function() {
+		$("#headers").load("doctorHeader");
+		$("#footer").load("footer");
+	});
+</script>
+</head>
+<body>
+	<div id="headers"></div>
+	<h2>My Admitted Patient</h2>
+	<hr>
+	<br>
+	<div style="width: 90%; margin: auto;">
+	<table class="table table-striped" border="1" style="width: 74%; float: left">
+		<tr>
+			<th style="width: 50px">ID</th>
+			<th style="width: 250px; ">Patient Name</th>
+			<th style="width: 50px;">Age</th>
+			<th style="width: 60px;" >Gender</th>					
+			<th>Problem</th>
+			
+
+		</tr>
+		<tr th:each="object:${object}">
+			<td th:text="${object.id}"></td>
+			<td style="text-align: left;" th:text="${object.name}"></td>
+			<td class="b" th:text="${object.age}"></td>
+			<td class="c" th:text="${object.gender}"></td>
+			<td class="c" th:text="${object.problem}"></td>
+		</tr>
+	</table>
+	<table class="table table-striped" border="1" style="width: 26%; float: left;">
+		<tr>		
+			<th style="widows: 120px">Admission Date</th>			
+			<th>Bed No</th>			
+			<th>Floor</th>						
+		</tr>
+		<tr th:each="object:${object2}">
+			<td th:text="${object.admission_date}"></td>
+			<td th:text="${object.bed_no}"></td>
+			<td class="b" th:text="${object.floor}"></td>
+		</tr>
+	</table>
+	</div>
+	<div id="footer"></div>
+</body>
+</html>

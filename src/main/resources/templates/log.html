@@ -1,0 +1,57 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Doctor login</title>
+
+<style type="text/css">
+tr td {
+	text-align: left;
+}
+
+td input {
+	width: 300px;
+	height: 35px;
+	font-size: 15px;
+}
+
+select {
+	width: 300px;
+	height: 35px;
+	font-size: 15px;
+}
+
+table tr td {
+	padding-top: 20px;
+}
+</style>
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	$(function() {
+		$("#header").load("loginHeader");
+		$("#footer").load("footer");
+	});
+</script>
+</head>
+<body>
+	<div id="header"></div>
+
+<div class="login">
+  <h1>Login</h1>
+    <form method="post">
+      <input type="text" name="u" placeholder="Username" required="required" />
+        <input type="password" name="p" placeholder="Password" required="required" />
+        <button type="submit" class="btn btn-primary btn-block btn-large">Let me in.</button>
+    </form>
+</div>
+
+	
+
+
+	<h4 th:text="${alert}"></h4>
+	<div id="footer"></div>
+</body>
+</html>

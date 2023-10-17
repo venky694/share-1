@@ -1,0 +1,170 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Today Sale</title>
+<style type="text/css">
+.b {
+	text-align: left;
+}
+.c{
+	text-align: center;
+}
+
+tr td {
+	border: 1px solid gray;
+	padding: 3px;
+}
+
+tr th {
+	border: 1px solid black;
+}
+
+.update {
+	background-color: orange;
+}
+
+.delete {
+	background-color: red;
+}
+
+.delete:hover {
+	background-color: aqua;
+}
+
+.update:hover {
+	background-color: aqua;
+}
+
+option {
+	color: black;
+}
+</style>
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	$(function() {
+		$("#headers").load("adminHeader");
+		$("#footer").load("footer");
+	});
+
+	function printDiv(divName) {
+		var printContents = document.getElementById(divName).innerHTML;
+		var originalContents = document.body.innerHTML;
+		document.body.innerHTML = printContents;
+		window.print();
+		document.body.innerHTML = originalContents;
+	}
+</script>
+</head>
+<body>
+	<div id="headers"></div>
+
+
+	<div id="printableArea" style="width: 80%; margin: auto;">
+		<p style="text-align:center; font-size: 27px; font-weight: bold;">TOTDAY SALES<p>
+		<table style="width: 100%" border="1px solid withe">
+			<tr>
+				<td style="border: 1px solid  #ddd;">
+					<h4 style="text-align: left; margin-bottom: 0px; color:#D63DF4;">All Sales :</h4>
+				</td>
+				<td style="border: 1px solid  #ddd; text-align: right;">
+					<form action="admin_searchByDate" method="post">
+						<input type="date" name="searchItem" required="required" placeholder="Search by date">
+						<input type="submit" value="Search">
+					</form>
+				</td>
+			</tr>
+		</table>
+		<table border="1" style="width: 100%; border-collapse: collapse;" class="table table-striped">
+			<tr>
+				<th>Voucher No.</th>
+				<th>Customer Name</th>
+				<th>Date</th>
+				<th>Sub total</th>
+				<th>Discount</th>
+				<th>Total</th>
+				<th>Status</th>
+			</tr>
+			<tr th:each="object:${todaySale}">
+				<td class="c" th:text="${object.voucher_no}"></td>
+				<td class="b" th:text="${object.customer_name}"></td>
+				<td class="c" th:text="${object.date}"></td>
+				<td class="c" th:text="${object.subtotal}"></td>
+				<td class="c" th:text="${object.discount}"></td>
+				<td class="c" th:text="${object.total}"></td>
+				<td class="c" th:text="${object.status}"></td>
+			</tr>
+			<tr>
+				<th class="c" colspan="3">Today Total Sales</th>
+				<th class="c" th:text="${dailyTotal[0]}"></th>
+				<th class="c" th:text="${dailyTotal[1]}"></th>
+				<th class="c" th:text="${dailyTotal[2]}"></th>
+				<td class="c"></td>
+			</tr>
+		</table>
+
+		<h4 style="text-align: left; margin-bottom: 0px;color:#D63DF4;">Cash Sales :</h4>
+		<table border="1" style="width: 100%; border-collapse: collapse;" class="table table-striped">
+			<tr>
+				<th>Voucher No.</th>
+				<th>Customer Name</th>
+				<th>Sub total</th>
+				<th>Discount</th>
+				<th>Total</th>
+
+			</tr>
+			<tr th:each="object:${todayCashSale}">
+				<td class="c" th:text="${object.voucher_no}"></td>
+				<td class="b" th:text="${object.customer_name}"></td>
+				<td class="c" th:text="${object.subtotal}"></td>
+				<td class="c" th:text="${object.discount}"></td>
+				<td class="c" th:text="${object.total}"></td>
+
+			</tr>
+			<tr>
+				<th class="c" colspan="2">Total Cash Sales</th>
+				<th class="c" th:text="${cashTotal[0]}"></th>
+				<th class="c" th:text="${cashTotal[1]}"></th>
+				<th class="c" th:text="${cashTotal[2]}"></th>
+
+			</tr>
+		</table>
+
+
+		<h4 style="text-align: left; margin-bottom: 0px;color:#D63DF4;">Sales receivable/ Due Sales :</h4>
+		<table border="1" style="width: 100%; border-collapse: collapse;" class="table table-striped">
+			<tr>
+				<th>Voucher No.</th>
+				<th>Customer Name</th>
+				<th>Sub total</th>
+				<th>Discount</th>
+				<th>Total</th>
+
+			</tr>
+			<tr th:each="object:${todayDueSale}">
+				<td class="c" th:text="${object.voucher_no}"></td>
+				<td class="b" th:text="${object.customer_name}"></td>
+				<td class="c" th:text="${object.subtotal}"></td>
+				<td class="c" th:text="${object.discount}"></td>
+				<td class="c" th:text="${object.total}"></td>
+
+			</tr>
+			<tr>
+				<th class="c" colspan="2" >Total Accrued Sales</th>
+
+				<th class="c" th:text="${dueTotal[0]}"></th>
+				<th class="c" th:text="${dueTotal[1]}"></th>
+				<th class="c" th:text="${dueTotal[2]}"></th>
+
+			</tr>
+		</table>
+	</div>
+	<div>
+		<input style="margin-top: 30px; background-color: #69C8FF" type="button" onclick="printDiv('printableArea')" value="Print and Save" /> <br> <br>
+	</div>
+	<div id="footer"></div>
+</body>
+</html>

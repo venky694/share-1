@@ -1,0 +1,103 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>My Patient</title>
+
+<style type="text/css">
+.b {
+	text-align: left;
+}
+
+tr td {
+	border: 1px solid gray;
+	padding: 3px;
+}
+
+tr th {
+	border: 1px solid black;
+}
+
+.update {
+	background-color:  #8BCEF5 ;
+}
+
+.delete {
+	background-color:  #8BCEF5 ;
+}
+
+.delete:hover {
+	background-color: aqua;
+}
+
+.update:hover {
+	background-color: aqua;
+}
+</style>
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	$(function() {
+		$("#headers").load("doctorHeader");
+		$("#footer").load("footer");
+	});
+</script>
+</head>
+<body>
+	<div id="headers"></div>
+	<h2>Today Appointment Schedule list</h2>
+	<hr>
+	<br>
+	<div style="width: 85%; margin: auto;">
+		<table border="1" style="width: 100%;">
+			<tr>
+				<th>ID</th>
+				<th>Patient Name</th>
+				<th>Age</th>
+				<th>Gender</th>
+				<th>Problem</th>
+				<th colspan="2" >Test And Prescription</th>
+
+			</tr>
+			<tr th:each="object:${object}">
+				<td th:text="${object.id}"></td>
+				<td style="text-align:left;" th:text="${object.name}"></td>
+				<td th:text="${object.age}"></td>
+				<td th:text="${object.gender}"></td>
+				<td style="text-align:left;"  th:text="${object.problem}"></td>
+				<td style="text-align: right; width: 60px">
+					<form action="giveTest" method="post">
+						<input type="text" name="id" th:value="${object.id}" hidden="">
+						<input type="text" name="name" th:value="${object.name}" hidden="">
+						<input type="text" name="mobile" th:value="${object.mobile}"hidden=""> 
+						<input type="text" name="address" th:value="${object.address}" hidden="">
+						 <input type="text" name="doctor" th:value="${object.doctor}" hidden="">
+						<input type="text" name="gender" th:value="${object.gender}"hidden=""> 
+						<input type="text" name="age" th:value="${object.age}" hidden=""> 
+						<input type="text"	name="problem" th:value="${object.problem}" hidden="">
+						<input type="text"	name="email" th:value="${object.email}" hidden="">
+						 <input	class="update" type="submit" value="Give test">
+					</form>
+				</td>
+				<td style="text-align: left; width: 70px">
+					<form action="prescription" method="post">
+						<input type="text" name="id" th:value="${object.id}" hidden="">
+						<input type="text" name="name" th:value="${object.name}" hidden="">
+						<input type="text" name="mobile" th:value="${object.mobile}"hidden=""> 
+						<input type="text" name="address" th:value="${object.address}" hidden="">
+						 <input type="text" name="doctor" th:value="${object.doctor}" hidden="">
+						<input type="text" name="gender" th:value="${object.gender}"hidden=""> 
+						<input type="text" name="age" th:value="${object.age}" hidden=""> 
+						<input type="text"	name="problem" th:value="${object.problem}" hidden="">
+						<input type="text"	name="email" th:value="${object.email}" hidden="">
+						<input class="delete" type="submit" value="Prescription">
+					</form>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div id="footer"></div>
+</body>
+</html>

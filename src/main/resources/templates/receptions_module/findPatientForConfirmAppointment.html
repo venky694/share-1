@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Search Patient</title>
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	$(function() {
+		$("#header").load("receptionsHeader");
+		$("#footer").load("footer");
+	});
+</script>
+</head>
+<body>
+	<div id="header"></div>
+	<div style="text-align: center;">
+		<h3>Search Patient</h3>
+		<hr>
+		<form method="POST" action="getPatientForBill" style="margin-left: auto; margin-right: auto;">
+			<input style="height: 28px" type="number" name="id" required="required" placeholder="Enter Patient ID" /> <input type="submit" value="Search" />
+		</form>
+		<h4 th:text="${msg}"></h4>
+
+	</div>
+	<div id="footer"></div>
+</body>
+</html>

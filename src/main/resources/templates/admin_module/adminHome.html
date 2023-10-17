@@ -1,0 +1,194 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Home</title>
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	$(function() {
+		$("#header").load("adminHeader");
+		$("#footer").load("footer");
+	});
+</script>
+<style type="text/css">
+.adminCard {
+	width: 260px;
+	height: 95px;
+	border: 1px solid blue;
+	background-color: #C1ECC4;
+	padding: 5px;
+	padding-top: 10px;
+	margin-left: 20px;
+	margin-bottom: 20px;
+	float: left;
+	margin-left: 20px;
+}
+
+.adminCard:hover {
+	border: 2px solid #E313D0;
+	background-color: white;
+	cursor: pointer;
+}
+</style>
+
+ <script type="text/javascript" th:inline="javascript">
+ var abc =/*[[${abc}]]*/
+  window.onload = function () {
+	 
+    var chart = new CanvasJS.Chart("chartContainer",
+    	
+    {
+    	animationEnabled: true, 
+		animationDuration: 2000,   //change to 1000,
+		backgroundColor: "#ABB5B7",
+		
+      title:{
+        text: "Patient in this month",
+        	fontColor: "green",
+            fontWeight: "normal",
+            fontFamily: "tahoma",
+            fontSize: 25,
+      },
+      axisX:{
+          title: "Day of month",
+          
+         
+         },
+      axisY:{
+          title: "Number of Patient"
+         },
+      
+      data: [
+      {	  
+        dataPoints: [	
+        { x: 1, y: abc[0], label: "01"},
+        { x: 2, y: abc[1],  label: "02" },
+        { x: 3, y: abc[2],  label: "03"},
+        { x: 4, y: abc[3],  label: "04"},
+        { x: 5, y: abc[4],  label: "05"},
+        { x: 6, y: abc[5], label: "06"},
+        { x: 7, y: abc[6],  label: "07"},
+        { x: 8, y: abc[7],  label: "08"},
+        { x: 9, y: abc[8],  label: "09"},
+        { x: 10, y: abc[9],  label: "10"},
+        { x: 11, y: abc[10],  label: "11"},
+        { x: 12, y: abc[11],  label: "12"},
+        { x: 13, y: abc[12],  label: "13"},
+        { x: 14, y: abc[13],  label: "14"},
+        { x: 15, y: abc[14],  label: "15"},
+        { x: 16, y: abc[15],  label: "16"},
+        { x: 17, y: abc[16],  label: "17"},
+        { x: 18, y: abc[17],  label: "18"},
+        { x: 19, y: abc[18],  label: "19"},
+        { x: 20, y: abc[19],  label: "20"},
+        { x: 21, y: abc[20],  label: "21"},
+        { x: 22, y: abc[21],  label: "22"},
+        { x: 23, y: abc[22],  label: "23"},
+        { x: 24, y: abc[23],  label: "24"},
+        { x: 25, y: abc[24],  label: "25"},
+        { x: 26, y: abc[25],  label: "26"},
+        { x: 27, y: abc[26],  label: "27"},
+        { x: 28, y: abc[27],  label: "28"},
+        { x: 29, y: abc[28],  label: "29"},
+        { x: 30, y: abc[29],  label: "30"},
+        { x: 31, y: abc[30],  label: "31"},
+        ]
+      }
+      ]
+    });
+
+    chart.render();
+  }
+  
+ 
+  </script>
+  <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script></head>
+</head>
+<body>
+	<div id="header"></div>
+	<div style="margin: auto; text-align: center; width: 90%; padding-left: 50px">
+       <br>
+		<div class="adminCard">
+			<div style="width: 20%; float: left;">
+				<i style="font-size: 50px; padding-top: 10px;" class="fas fa-user-injured"></i>
+			</div>
+			<div style="width: 80%; float: left;">
+				<h4 style="color: #155246">Total Patient</h4>
+				<h4 style="color: #155246"  th:text="${totalPatient}"></h4>
+			</div>
+		</div>
+		<div class="adminCard">
+			<div style="width: 20%; float: left;">
+				<i  style="font-size: 50px; padding-top: 10px;" class="fas fa-procedures"></i>
+			</div>
+			<div style="width: 80%; float: left;">
+				<h4 style="color: #155246">Admitted Patient</h4>
+				<h4 style="color: #155246" th:text="${totalAdmittedPatient}"></h4>
+			</div>
+		</div>
+		<div class="adminCard">
+			<div style="width: 20%; float: left;">
+				<i style="font-size: 50px; padding-top: 10px;" class="fas fa-user-tie"></i>
+			</div>
+			<div style="width: 80%; float: left;">
+				<h4 style="color: #155246">Employee</h4>
+				<h4 style="color: #155246">45</h4>
+			</div>
+		</div>
+		<div class="adminCard">
+			<div style="width: 20%; float: left;">
+				<i style="font-size: 50px; padding-top: 10px;" class="fas fa-user-md"></i>
+			</div>
+			<div style="width: 80%; float: left;">
+				<h4 style="color: #155246">Doctors</h4>
+				<h4 style="color: #155246" th:text="${totalDoctor}"></h4>
+			</div>
+		</div>
+		<div class="adminCard">
+			<div style="width: 20%; float: left;">
+				<i style="font-size: 50px; padding-top: 10px;" class="fas fa-user-nurse"></i>
+			</div>
+			<div style="width: 80%; float: left;">
+				<h4 style="color: #155246">Nurse</h4>
+				<h4 style="color: #155246" th:text="${nurse}"></h4>
+			</div>
+		</div>
+		<div class="adminCard">
+			<div style="width: 20%; float: left;">
+				<i style="font-size: 50px; padding-top: 10px;" class="fas fa-calendar-plus"></i>
+			</div>
+			<div style="width: 80%; float: left;">
+				<h4 style="color: #155246">Appointment</h4>
+				<h4 style="color: #155246" th:text="${todayPatient}"></h4>
+			</div>
+		</div>
+		<div class="adminCard">
+			<div style="width: 20%; float: left;">
+				<i style="font-size: 50px; padding-top: 10px;" class="fas fa-pills"></i>
+			</div>
+			<div style="width: 80%; float: left;">
+				<h4 style="color: #155246">Medicine Sale</h4>
+				<h4 style="color: #155246" th:text="${todayTotalMedicineSale}"></h4>
+			</div>
+		</div>
+		<div class="adminCard">
+			<div style="width: 18%; float: left;">
+				<i style="font-size: 50px; padding-top: 10px;" class="fas fa-vial"></i>
+			</div>
+			<div style="width: 82%; float: left;">
+				<h4 style="color: #155246">Diagnostic income</h4>
+				<h4 style="color: #155246" th:text="Tk. +${todayDiagnosticRevenue}"></h4>
+			</div>
+		</div>
+	
+	</div>
+	<div style="clear:both;"></div>
+	
+   	<div id="chartContainer" style="height: 280px; width: 86%; margin: auto; padding-left: 5px">
+     </div>
+     <br>
+    
+	<div id="footer"></div>
+</body>
+</html>

@@ -1,0 +1,71 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Future Appointment</title>
+
+<style type="text/css">
+
+tr td {
+	border: 1px solid gray;
+	padding: 3px;
+	
+}
+
+tr th {
+	border: 1px solid black;
+}
+.update{
+background-color: orange;
+}
+.delete{
+background-color: red;
+}
+.delete:hover {
+	background-color: aqua;
+}
+.update:hover {
+	background-color: aqua;
+}
+</style>
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	$(function() {
+		$("#headers").load("doctorHeader");
+		$("#footer").load("footer");
+	});
+</script>
+</head>
+<body>
+	<div id="headers"></div>
+	<h2>Future Appointment Schedule</h2>
+	<hr>
+	<br>
+	<div style="width: 85%; margin: auto;">
+	<table border="1" style="width: 100%;">
+		<tr>
+			<th>ID</th>
+			<th>Patient Name</th>
+			<th>Age</th>
+			<th>Gender</th>
+			<th>Appointment Date</th>
+			<th>Problem</th>
+			
+
+		</tr>
+		<tr th:each="object:${object}">
+			<td th:text="${object.id}"></td>
+			<td th:text="${object.name}"></td>
+			<td class="b" th:text="${object.age}"></td>
+			<td class="c" th:text="${object.gender}"></td>
+			<td style="width: 150px" th:text="${object.app_date}"></td>
+			<td class="c" th:text="${object.problem}"></td>
+		</tr>
+	</table>
+	</div>
+	<div id="footer"></div>
+</body>
+</html>

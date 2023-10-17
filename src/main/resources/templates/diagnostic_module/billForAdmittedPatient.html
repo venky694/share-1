@@ -1,0 +1,203 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Create diagnostic bill</title>
+
+<style type="text/css">
+.b {
+	text-align: left;
+}
+
+tr td {
+	text-align: left;
+	padding-top: 10px;
+	border: 1px;
+}
+
+.c {
+	text-align: center;
+}
+
+.add {
+	background-color: orange;
+}
+
+.add:hover {
+	background-color: aqua;
+}
+
+.borders {
+	border: 1px solid gray;
+	font-size: 14px;
+	padding: 3px;
+}
+
+.width {
+	width: 75px;
+}
+
+.patientInfo td {
+	padding-top: 0px;
+	padding-bottom: 0px
+}
+
+.totalRows td {
+	font-weight: bold;
+}
+</style>
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	$(function() {
+		$("#headers").load("diagnosticHeader");
+		$("#footer").load("footer");
+	});
+
+	$("#prospects_form").submit(function(e) {
+		e.preventDefault(); // <==stop page refresh==>
+	});
+</script>
+</head>
+<body>
+	<div id="headers"></div>
+	<h2>Diagnostic Billing For Admitted Patient</h2>
+
+	<div>
+		<div style="width: 40%; margin-left: 35px; float: left; background-color: #DFF0FA; padding: 20px; height: 465px;">
+			<form th:action="@{/findTestPriceForAddmittedPatient}" th:object="${postagem}" method="post">
+				<table style="margin-left: 10px">
+					<tr>
+						<td>Select Medicine</td>
+						<td>:</td>
+						<td><input style="width: 300px" type="text" name="test_name" placeholder="--Select Sedicnie--" list="test_name"> <datalist id="test_name">
+
+								<option th:each="name : ${name}" th:text="${name}" th:value="${name}">
+							</datalist> <input type="submit" style="background-color: #BB8FCE; color: white;" value="Search"></td>
+					</tr>
+				</table>
+				<h5 th:text="${wrong}"></h5>
+			</form>
+
+
+			<hr>
+			<form th:action="@{/addTestToVoucehrDetailsForAddmittedPatient}" method="post">
+				<table style="margin-left: 30px">
+					<tr>
+						<td>Voucher No.</td>
+						<td>:</td>
+						<td class="b"><input name="voucher_no" style="width: 300px" type="text" th:value="${voucher_no}" readonly="readonly" required="required"></td>
+					</tr>
+
+					<tr>
+						<td>Test Name</td>
+						<td>:</td>
+						<td class="b"><input name="test_name" style="width: 300px" type="text" th:value="${testName}" readonly="readonly" required="required"></td>
+					</tr>
+					<tr>
+						<td>Test Rate</td>
+						<td>:</td>
+						<td class="b"><input name="rate" style="width: 300px" type="text" th:value="${testPrice}" readonly="readonly" required="required"></td>
+					</tr>
+					<tr>
+						<td>Discount Rate</td>
+						<td>:</td>
+						<td class="b"><input name="discount" style="width: 300px" type="number" required="required" value="0"></td>
+					</tr>
+					<tr>
+						<td colspan="3" class="c"><input style="width: 100px s; background-color: #BB8FCE; width: 120px; color: white;" type="submit" value="Add"></td>
+					</tr>
+				</table>
+			</form>
+			<h5 th:text="${msg}"></h5>
+		</div>
+
+		<div style="width: 54%; margin-left: 10px; float: left; background-color: #DFF0FA; padding: 10px; height: 465px">
+
+			<table>
+				<tr>
+					<td style="font-size: 18px; font-weight: bold;">Voucher No :</td>
+					<td colspan="3" style="text-align: left; font-size: 20px" th:text="${voucher_no}"></td>
+				</tr>
+			</table>
+			<table class="patientInfo" th:each="patient:${patient}">
+				<tr>
+					<td style="font-size: 18px">Patient ID</td>
+					<td style="font-size: 18px">:</td>
+					<td colspan="3" style="text-align: left;" th:text="${patient.id}"></td>
+				</tr>
+				<tr>
+					<td>Patient Name</td>
+					<td>:</td>
+					<td style="width: 250px" th:text=${patient.name}></td>
+
+					<td>Gender</td>
+					<td>:</td>
+					<td th:text=${patient.gender}></td>
+				</tr>
+				<tr>
+					<td>Mobile number</td>
+					<td>:</td>
+					<td th:text="${patient.mobile}"></td>
+					<td>Age</td>
+					<td>:</td>
+					<td th:text="${patient.age}"></td>
+				</tr>
+				<tr>
+					<td>Consultant Name</td>
+					<td>:</td>
+					<td th:text="${ patient.doctor}"></td>
+					<td>Disease Name</td>
+					<td>:</td>
+					<td th:text="${ patient.problem}"></td>
+				</tr>
+			</table>
+			<table style="width: 100%; border-collapse: collapse;">
+
+				<tr>
+					<th class=" borders">Serial No</th>
+					<th class=" borders">Test Name</th>
+					<th class=" borders width">Rate</th>
+					<th class=" borders width">Discount</th>
+					<th class=" borders width">Total</th>
+					<th class=" borders width" colspan="1">Action</th>
+
+				</tr>
+				<tr th:each="object,iterator:${invoiceItem}">
+					<td style="text-align: center;" class=" borders" th:text="${iterator.index + 1}"></td>
+					<td class="borders" th:text="${object.test_name}"></td>
+					<td class="c borders" th:text="${object.rate}"></td>
+					<td class="c borders" th:text="${object.discount}"></td>
+					<td class="c borders" th:text="${object.total}"></td>
+					<td class="c borders">
+						<form th:action="@{/removeSelectedTestNamesForAdmittedPatient}" method="post">
+							<input type="text" name="id" th:value="${object.id}" hidden=""> <input style="margin-top: 3px; background-color: #D3F1B0;" type="submit" value="Remove">
+						</form>
+					</td>
+				</tr>
+				<tr class="totalRows" th:each="object:${invoiceTotal}">
+					<td colspan="2" class="c borders">Grand Total</td>
+					<td class="c borders" th:text="${object.rate}"></td>
+					<td class="c borders" th:text="${object.discount}"></td>
+					<td class="c borders" th:text="${object.total}"></td>
+					<td class="borders"></td>
+				</tr>
+			</table>
+		</div>
+
+		<div style="text-align: center; margin-top: 20px; margin-left: 46%; float: left; height: 130px">
+			<h5 th:text="${error}"></h5>
+			<form action="diagnosticBillForAdmittedPatient" method="post">
+				<input style="background-color: #BB8FCE" type="submit" value="Generate Bill">
+			</form>
+		</div>
+
+	</div>
+
+	
+
+	<div id="footer"></div>
+</body>
+</html>

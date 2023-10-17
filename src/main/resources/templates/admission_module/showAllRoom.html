@@ -1,0 +1,99 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>show All</title>
+<style type="text/css">
+.b {
+	text-align: left;
+}
+
+tr td {
+	border: 1px solid gray;
+	height: 25px
+}
+
+tr th {
+	border: 1px solid black;
+}
+
+.update {
+	background-color: orange;
+}
+
+.delete {
+	background-color: red;
+}
+
+.delete:hover {
+	background-color: aqua;
+}
+
+.update:hover {
+	background-color: aqua;
+}
+
+.negetive {
+	color: red
+}
+</style>
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	$(function() {
+		$("#headers").load("admissionHeader");
+		$("#footer").load("footer");
+	});
+</script>
+</head>
+<body>
+	<div id="headers"></div>
+
+	<h2>All Room List</h2>
+	<hr>
+	<div class="container">
+		<form action="searchRoom" method="POST">
+			<input style="width: 150px; text-align: center; margin-bottom: 10px" type="text" name="floor" placeholder="Search" list="floor">
+			<datalist id="floor">
+				<option value="Third floor">Third floor</option>
+				<option value="Fourth floor">Fourth floor</option>
+				<option value="Fifth floor">Fifth floor</option>
+				<option value="Sixth floor">Sixth floor</option>
+			</datalist>
+			<input type="submit" value="search">
+		</form>
+		<h4 th:text="${msg}"></h4>
+		<table id="Table_id" border="1" class="table table-striped " style="width: 100%; border-collapse: collapse;">
+			<tr>
+				<th>Bed No</th>
+				<th>Rate</th>
+				<th>Room No</th>
+				<th>Floor</th>
+				<th>Room Capacity</th>
+				<th>Status</th>
+				<th>Action</th>
+			</tr>
+			<tr th:each="object:${room}">
+				<td class="c" th:text="${object.bed_no}"></td>
+				<td class="c" th:text="${object.rate}"></td>
+				<td class="c" th:text="${object.room_no}"></td>
+				<td class="c" th:text="${object.floor}"></td>
+				<td class="c" th:text="${object.type}"></td>
+				<td  class="c" th:text="${object.status}"></td>
+
+				<td style="text-align: right; width: 50px">
+					<form action="booking" method="post">
+						<input type="text" name="bed_no" th:value="${object.bed_no}" hidden=""> <input class="update" type="submit" value="Booking">
+					</form></td>
+
+			</tr>
+		</table>
+	</div>
+
+
+
+	<div id="footer"></div>
+</body>
+</html>

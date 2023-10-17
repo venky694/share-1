@@ -1,0 +1,86 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>show All</title>
+<style type="text/css">
+.b {
+	text-align: left;
+}
+
+tr td {
+	border: 1px solid gray;
+	padding: 3px;
+}
+
+tr th {
+	border: 1px solid black;
+}
+
+.update {
+	background-color: orange;
+}
+
+.delete {
+	background-color: red;
+}
+
+.delete:hover {
+	background-color: aqua;
+}
+
+.update:hover {
+	background-color: aqua;
+}
+</style>
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	$(function() {
+		$("#headers").load("header");
+		$("#footer").load("footer");
+	});
+</script>
+</head>
+<body>
+	<div id="headers"></div>
+
+	<h2>All Medicine List</h2>
+	<hr>
+	<div style="width: 80%; margin: auto;">
+		<table border="1" style="width: 100%; border-collapse: collapse;">
+			<tr>
+				<th>ID</th>
+				<th>Medicine Name</th>
+				<th>Catagory</th>
+				<th>Manufacturer</th>
+				<th>Stock Quantity</th>
+				<th>Unit Price</th>
+				<th colspan="2">Edit&Delete</th>
+			</tr>
+			<tr th:each="object:${object}">
+				<td th:text="${object.id}"></td>
+				<td class="b" th:text="${object.name}"></td>
+				<td class="b" th:text="${object.category}"></td>
+				<td class="b" th:text="${object.manufacturer}"></td>
+				<td class="c" th:text="${object.quantity}"></td>
+				<td class="c" th:text="${object.price}"></td>
+				<td style="text-align: right;">
+					<form action="getMedicine" method="post">
+						<input type="text" name="id" th:value="${object.id}" hidden=""> <input class="update" type="submit" value="update">
+					</form>
+				</td>
+				<td style="text-align: left;">
+					<form action="delete" method="post">
+						<input type="text" name="id" th:value="${object.id}" hidden=""> <input class="delete" type="submit" value="Delete">
+					</form>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+	<div id="footer"></div>
+</body>
+</html>

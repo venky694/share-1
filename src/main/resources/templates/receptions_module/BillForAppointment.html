@@ -1,0 +1,117 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Filed address</title>
+
+<style type="text/css">
+tr td {
+	text-align: left;
+	font-size: 18px
+}
+
+td input {
+	width: 300px;
+	height: 35px;
+	font-size: 15px;
+}
+
+select {
+	width: 300px;
+	height: 35px;
+	font-size: 15px;
+}
+
+table tr td {
+	padding-top: 8px;
+}
+</style>
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	$(function() {
+		$("#header").load("receptionHeader");
+		$("#footer").load("footer");
+	});
+</script>
+</head>
+<body>
+	<div id="header"></div>
+	<h3 style="text-align: center;">Confirm Appointment And print Bill</h3>
+	<hr>
+	<div style=" height: 400px; width: 1200px ; margin: auto; background-color:white;  ">
+		<form action="SaveAndBill" method="post" th:each="object:${object}">
+			<div style=" height: 295px; width: 550px; float: left; margin-left: 36px ">
+				<table>
+					<tr>
+						<td>Patient Id</td>
+						<td>:</td>
+						<td><h5 style="padding-top: 8px"  th:text=${object.id}></h5></td>
+						<td><input type="text" name="id" hidden="" th:value=${object.id}></td>
+					</tr>
+					<tr>
+						<td>Patient Name</td>
+						<td>:</td>
+						<td><h5 style="padding-top: 8px" th:text=${object.name}></h5></td>
+					</tr>
+					<tr>
+						<td>Mobile Number</td>
+						<td>:</td>
+						<td><h5 style="padding-top: 8px" th:text=${object.mobile}></h5></td>
+					</tr>
+					<tr>
+						<td>Doctor's Name</td>
+						<td>:</td>
+						<td><h5 style="padding-top: 8px" th:text=${object.doctor}></h5></td>
+					</tr>
+					<tr>
+						<td>Email</td>
+						<td>:</td>
+						<td><input type="text" name="email" placeholder="Enter patient Email ID" required="required"></td>
+					</tr>
+				</table>
+
+			</div>
+			<div style="height: 295px; width: 550px; float: left;">
+				<table>
+					<tr>
+						<td>Patient Age</td>
+						<td>:</td>
+						<td><h5 style="padding-top: 8px" th:text=${object.age}></h5></td>
+					</tr>
+					<tr>
+						<td>Gender</td>
+						<td>:</td>
+						<td><h5 style="padding-top: 8px" th:text=${object.gender}></h5></td>
+					</tr>
+					<tr>
+						<td>Problem</td>
+						<td>:</td>
+						<td><h5 style="padding-top: 8px" th:text=${object.problem}></h5></td>
+					</tr>
+					<tr>
+						<td>Doctor's Fee</td>
+						<td>:</td>
+						<td><h5 style="padding-top: 8px" th:text=${doctorFee}></h5></td>
+						<td><input type="text" name="payment" hidden="" th:value=${doctorFee}></td>
+					</tr>
+					<tr>
+						<td>Address</td>
+						<td>:</td>
+						<td><input type="text" name="address" required="required" placeholder="Ender Patient Address"></td>
+					</tr>
+				</table>
+			</div>
+			<div style="text-align: center; ">
+			<input type="submit" style="width: 120px; background-color: #67AEF0 ; color: white; font-size: 18px; height: 35px" value="Save">
+			</div>
+			<br>
+		</form>
+	</div>
+	<h4 th:text="${msg}"></h4>
+
+	<div id="footer"></div>
+</body>
+</html>

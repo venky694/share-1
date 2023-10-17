@@ -1,0 +1,171 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Home</title>
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	$(function() {
+		$("#header").load("header");
+		$("#footer").load("footer");
+	});
+</script>
+<style type="text/css">
+.graph {
+	position: absolute;
+	z-index: -1;
+}
+</style>
+
+<script type="text/javascript" th:inline="javascript">
+ var abc =/*[[${abc}]]*/
+  window.onload = function xyz() {
+    var chart = new CanvasJS.Chart("chartContainer",
+    {
+    	animationEnabled: true, 
+		animationDuration: 2000,   //change to 1000,
+		backgroundColor: "#ABB5B7",
+      title:{
+            text: "Daily medicine Sale in this month",
+            fontColor: "green",
+            fontWeight: "normal",
+            fontFamily: "tahoma",
+            fontSize: 25,
+        	
+      },
+      axisX:{
+          title: "Day of month",
+          labelFontSize: 12,
+    
+         
+         },
+      axisY:{
+          title: "Sales in (Taka)",
+          gridColor: "#D6DBDF",
+         },
+      data: [
+      {	  
+        dataPoints: [	
+        { x: 1, y: abc[0], label: "01"},
+        { x: 2, y: abc[1],  label: "02" },
+        { x: 3, y: abc[2],  label: "03"},
+        { x: 4, y: abc[3],  label: "04"},
+        { x: 5, y: abc[4],  label: "05"},
+        { x: 6, y: abc[5], label: "06"},
+        { x: 7, y: abc[6],  label: "07"},
+        { x: 8, y: abc[7],  label: "08"},
+        { x: 9, y: abc[8],  label: "09"},
+        { x: 10, y: abc[9],  label: "10"},
+        { x: 11, y: abc[10],  label: "11"},
+        { x: 12, y: abc[11],  label: "12"},
+        { x: 13, y: abc[12],  label: "13"},
+        { x: 14, y: abc[13],  label: "14"},
+        { x: 15, y: abc[14],  label: "15"},
+        { x: 16, y: abc[15],  label: "16"},
+        { x: 17, y: abc[16],  label: "17"},
+        { x: 18, y: abc[17],  label: "18"},
+        { x: 19, y: abc[18],  label: "19"},
+        { x: 20, y: abc[19],  label: "20"},
+        { x: 21, y: abc[20],  label: "21"},
+        { x: 22, y: abc[21],  label: "22"},
+        { x: 23, y: abc[22],  label: "23"},
+        { x: 24, y: abc[23],  label: "24"},
+        { x: 25, y: abc[24],  label: "25"},
+        { x: 26, y: abc[25],  label: "26"},
+        { x: 27, y: abc[26],  label: "27"},
+        { x: 28, y: abc[27],  label: "28"},
+        { x: 29, y: abc[28],  label: "29"},
+        { x: 30, y: abc[29],  label: "30"},
+        { x: 31, y: abc[30],  label: "31"},
+        ]
+      }
+      ]
+    });
+
+    chart.render();
+    
+    var chart1 = new CanvasJS.Chart("chartContainer1",
+    	    {
+    	     animationEnabled: true, 
+		     animationDuration: 2000,   //change to 1000,
+		      backgroundColor: "#ABB5B7",
+    	     
+    	      axisX:{
+    	          title: "Day of month",
+    	          labelFontSize: 12,
+    	         },
+    	      axisY:{
+    	          title: "Sales in (Taka)",
+    	          gridColor: "#D6DBDF",
+    	         },
+    	       data: [
+    	      {        
+    	        type: "spline",
+    	        
+    	        dataPoints: [
+    	        	{ x: 1, y: abc[0], label: "01"},
+    	            { x: 2, y: abc[1],  label: "02" },
+    	            { x: 3, y: abc[2],  label: "03"},
+    	            { x: 4, y: abc[3],  label: "04"},
+    	            { x: 5, y: abc[4],  label: "05"},
+    	            { x: 6, y: abc[5], label: "06"},
+    	            { x: 7, y: abc[6],  label: "07"},
+    	            { x: 8, y: abc[7],  label: "08"},
+    	            { x: 9, y: abc[8],  label: "09"},
+    	            { x: 10, y: abc[9],  label: "10"},
+    	            { x: 11, y: abc[10],  label: "11"},
+    	            { x: 12, y: abc[11],  label: "12"},
+    	            { x: 13, y: abc[12],  label: "13"},
+    	            { x: 14, y: abc[13],  label: "14"},
+    	            { x: 15, y: abc[14],  label: "15"},
+    	            { x: 16, y: abc[15],  label: "16"},
+    	            { x: 17, y: abc[16],  label: "17"},
+    	            { x: 18, y: abc[17],  label: "18"},
+    	            { x: 19, y: abc[18],  label: "19"},
+    	            { x: 20, y: abc[19],  label: "20"},
+    	            { x: 21, y: abc[20],  label: "21"},
+    	            { x: 22, y: abc[21],  label: "22"},
+    	            { x: 23, y: abc[22],  label: "23"},
+    	            { x: 24, y: abc[23],  label: "24"},
+    	            { x: 25, y: abc[24],  label: "25"},
+    	            { x: 26, y: abc[25],  label: "26"},
+    	            { x: 27, y: abc[26],  label: "27"},
+    	            { x: 28, y: abc[27],  label: "28"},
+    	            { x: 29, y: abc[28],  label: "29"},
+    	            { x: 30, y: abc[29],  label: "30"},
+    	            { x: 31, y: abc[30],  label: "31"},     
+    	        ]
+    	      }       
+    	        
+    	      ]
+    	    });
+
+    	    chart1.render();
+  }
+
+ 
+  </script>
+  
+<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</head>
+</head>
+<body>
+	<div id="header"></div>
+     <br>
+ 
+     
+	<div style="margin-left: 100px; height:280px; margin-bottom: 5px">
+		<div class="graph" id="chartContainer" style="height: 280px; width: 85%; margin: auto;"></div>
+	</div>
+
+	<div style="margin-left: 100px; height:280px">
+		<div class="graph" id="chartContainer1" style="height: 280px; width: 85%; margin: auto;"></div>
+	</div>
+	
+	  
+  
+
+	<div id="footer"></div>
+</body>
+</html>

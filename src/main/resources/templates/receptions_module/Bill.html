@@ -1,0 +1,205 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Bill</title>
+
+<style type="text/css">
+tr td {
+	text-align: left;
+	font-size:18px
+}
+.hrrr{
+        height: 5px;
+        background-color:red;
+        border: none;
+    }
+.col {
+	border: 1px solid black;
+	padding: 5px;
+}
+</style>
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	$(function() {
+		$("#header").load("receptionHeader");
+		$("#footer").load("footer");
+	});
+	function printDiv(divName) {
+		var printContents = document.getElementById(divName).innerHTML;
+		var originalContents = document.body.innerHTML;
+
+		document.body.innerHTML = printContents;
+
+		window.print();
+
+		document.body.innerHTML = originalContents;
+	}
+</script>
+</head>
+<body>
+	<div id="header"></div>
+	<div id="printableArea"
+		style="height: auto; width: 75%; margin: auto; background-color: #FAFAFA; padding: 25px"
+		th:each="object:${object}">
+
+		<h1 style="text-align: center;">Square Hospital Ltd</h1>
+		<h2 style="text-align: center;">Invoice</h2>
+		<h4 style="text-align: right;" th:text=${todayDate}></h4>
+		
+		<table style="width: 100%">
+			<tr>
+				<td colspan="6" style="font-size: 25px"><u>Patient Details :</u></td>
+
+			</tr>
+			<tr>
+				<td style="width: 150px">Patient Id</td>
+				<td>:</td>
+				<td th:text=${object.id}></td>
+				<td style="padding-left: 10px;width: 140px">Patient Age</td>
+				<td>:</td>
+				<td th:text=${object.age}></td>
+
+			</tr>
+			<tr>
+				<td>Patient Name</td>
+				<td>:</td>
+				<td th:text=${object.name}></td>
+				<td style="padding-left: 10px">Gender</td>
+				<td>:</td>
+				<td th:text=${object.gender}></td>
+			</tr>
+			<tr>
+				<td>Mobile Number</td>
+				<td>:</td>
+				<td th:text=${object.mobile}></td>
+				<td style="padding-left: 10px">Problem</td>
+				<td>:</td>
+				<td th:text=${object.problem}></td>
+			</tr>
+			<tr>
+				<td>Consultant Name</td>
+				<td>:</td>
+				<td th:text=${object.doctor}></td>
+				<td style="padding-left: 10px">Address </td>
+				<td>:</td>
+				<td th:text=${object.address}></td>
+			</tr>
+	
+
+		</table>
+		<table border="1" style="width: 100%; border-collapse: collapse;">
+			<tr>
+				<th class="col">Serial</th>
+				<th class="col">Description</th>
+				<th class="col">Rate</th>
+				<th class="col">Discount</th>
+				<th class="col">Amount</th>
+			</tr>
+			<tr>
+				<td class="col"  style="text-align: center">01</td>
+				<td class="col">Consultant Fee</td>
+				<td class="col" style="text-align: center; width:100px" th:text=${doctorFee}></td>
+				<td class="col" style="text-align: center; width:100px"></td>
+				<td class="col" style="text-align: center; width:100px" th:text=${doctorFee}></td>
+			</tr>
+			<tr>
+				<td class="col"  style="text-align: center">02</td>
+				<td class="col"></td>
+				<td class="col" style="text-align: center; width:100px" ></td>
+				<td class="col" style="text-align: center; width:100px"></td>
+				<td class="col" style="text-align: center; width:100px" ></td>
+			</tr>
+			<tr>
+				<td class="col"  style="text-align: center">03</td>
+				<td class="col"></td>
+				<td class="col" style="text-align: center; width:100px" ></td>
+				<td class="col" style="text-align: center; width:100px"></td>
+				<td class="col" style="text-align: center; width:100px" ></td>
+			</tr>
+			<tr>
+				<td class="col"  style="text-align: center">04</td>
+				<td class="col"></td>
+				<td class="col" style="text-align: center; width:100px" ></td>
+				<td class="col" style="text-align: center; width:100px"></td>
+				<td class="col" style="text-align: center; width:100px" ></td>
+			</tr>
+			<tr>
+				<td class="col"  style="text-align: center">05</td>
+				<td class="col"></td>
+				<td class="col" style="text-align: center; width:100px" ></td>
+				<td class="col" style="text-align: center; width:100px"></td>
+				<td class="col" style="text-align: center; width:100px" ></td>
+			</tr>
+			<tr>
+				<td class="col"  style="text-align: center">06</td>
+				<td class="col"></td>
+				<td class="col" style="text-align: center; width:100px" ></td>
+				<td class="col" style="text-align: center; width:100px"></td>
+				<td class="col" style="text-align: center; width:100px" ></td>
+			</tr>
+			<tr>
+				<td colspan="4" style="text-align: right;" class="col">Total</td>
+				<td class="col" style="text-align: center;"><span th:text=${doctorFee}></span></td>
+			</tr>
+			<tr>
+				<td colspan="4" style="text-align: right" class="col">Paid in Cash </td>
+				<td class="col" style="text-align: center;"><span th:text=${doctorFee}></span></td>
+			</tr>
+			<tr>
+				<td colspan="4" style="text-align: right" class="col">Due to paid</td>
+				<td class="col" style="text-align: center;"><span style="border-bottom: double;" >Nill</span></td>
+			</tr>
+		</table>
+      
+		<p style="text-align: left; font-size: 22px" th:text=${TotalInWord}></p>
+
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+	
+		<div style="width: 200px; margin-left: 530px">
+			<table>
+				<tr>
+					<td style="text-align: center;"><SPAN STYLE="text-decoration:overline"> Bill Prepared By </SPAN></td>
+				</tr>
+				<tr>
+					<td style="text-align: center;">Md Maharam ali</td>
+				</tr>
+				<tr>
+					<td style="text-align: center;">Senior Receptionis</td>
+				</tr>
+			</table>
+		</div>
+		
+		<table>
+				<tr>
+					<td >Contact Us:</td>
+				</tr>
+				<tr>
+					<td >Tel: +88 02 900 8884</td>
+					<td  style="padding-left: 20px">Mobile : 01710279904</td>
+					<td  style="padding-left: 20px">Email : square24@gmail.com</td>
+				</tr>
+			
+				
+			</table>
+		
+
+	</div>
+	<div style="text-align: center;">
+		<input style="margin-top: 30px" type="button"
+			onclick="printDiv('printableArea')" value="Print and Save" />
+	</div>
+
+	<h4 th:text="${msg}"></h4>
+
+	<div id="footer"></div>
+</body>
+</html>

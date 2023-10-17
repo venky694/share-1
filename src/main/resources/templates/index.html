@@ -1,0 +1,103 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Home</title>
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	$(function() {
+		$("#header").load("mainHeader");
+		$("#footer").load("footer");
+	});
+</script>
+<style type="text/css">
+.carts {
+	margin-right: 40px;
+	height: 190px;
+	width: 200px;
+	float: left;
+}
+.carts2 {
+	margin-right: 40px;
+	height: 190px;
+	width: 200px;
+	float: left;
+	margin-top: 40px
+}
+</style>
+</head>
+<body>
+	<div id="header"></div>
+	<div style="margin: auto; text-align: center;">
+		<div style="margin-top: 45px; margin-left: 220px;">
+			<div class="carts">
+				<div>
+					<img th:src="@{/photo/medicine.jpg}" class="card-img-top"	alt="photo" height="150px" width="120px">
+				</div>
+				<div class="">
+					<a style="height: 100%; width: 100%;" href="medicineHome"class="btn btn-primary">Medicine Department</a>
+				</div>
+			</div>
+			<div class="carts">
+				<div>
+					<img th:src="@{/photo/reciptions.jpg}" class="card-img-top"	alt="photo" height="150px" width="120px">
+				</div>
+				<div class="">
+					<a style="height: 100%; width: 100%" href="receptionsHome"class="btn btn-primary">Receptions Department</a>
+				</div>
+			</div>
+			<div class="carts">
+				<div>
+					<img th:src="@{/photo/doctor.jpg}" class="card-img-top"	alt="photo" height="150px" width="120px">
+				</div>
+				<div class="">
+					<a style="height: 100%; width: 100%" href="doctorLogin"class="btn btn-primary">Doctors</a>
+				</div>
+			</div>
+			<div class="carts">
+				<div>
+					<img th:src="@{/photo/diagnostic.jpg}" class="card-img-top"	alt="photo" height="150px" width="120px">
+				</div>
+				<div class="">
+					<a style="height: 100%; width: 100%" href="diagnosticHome"class="btn btn-primary">Diagnostic Department</a>
+				</div>
+			</div>
+			<div class="carts2">
+				<div>
+					<img th:src="@{/photo/Admission.jpg}" class="card-img-top"	alt="photo" height="150px" width="120px">
+				</div>
+				<div class="">
+					<a style="height: 100%; width: 100%" href="admissionHome"class="btn btn-primary">Admission Department</a>
+				</div>
+			</div>
+			<div class="carts2">
+				<div>
+					<img th:src="@{/photo/nurse.jpg}" class="card-img-top"	alt="photo" height="150px" width="120px">
+				</div>
+				<div class="">
+					<a style="height: 100%; width: 100%" href="nurseHome"class="btn btn-primary">Nursing Department</a>
+				</div>
+			</div>
+			<div class="carts2">
+				<div>
+					<img th:src="@{/photo/billing.jpg}" class="card-img-top"	alt="photo" height="150px" width="120px">
+				</div>
+				<div class="">
+					<a style="height: 100%; width: 100%" href="billingHome"class="btn btn-primary">Billing Department</a>
+				</div>
+			</div>
+			<div class="carts2">
+				<div>
+					<img th:src="@{/photo/employee.jpg}" class="card-img-top"	alt="photo" height="150px" width="120px">
+				</div>
+				<div class="">
+					<a style="height: 100%; width: 100%" href="loginPage"class="btn btn-primary">Admin Department</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="footer"></div>
+</body>
+</html>

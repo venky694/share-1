@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="../home-style.css">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+<title>Welcome to Spring Web MVC project</title>
+<style type="text/css">
+body {
+	
+	background-color:  #ddd;
+	
+}
+
+.abc {
+	color: white;
+}
+
+.abc:hover {
+	color: #CE0805;
+}
+.dropdownItem {
+	color: black;
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+	text-align: left;
+	padding-bottom: 1px;
+	padding-top: 1px
+}
+.dropdownItem:hover {
+	background-color: #BFC9CA;
+	width: 100%
+}
+
+.headers {
+	top: 0;
+	width: 100%;
+	position: fixed;
+	background: #2196F3;
+	color: #fff;
+	height: 50px
+}
+
+body {
+	padding-top: 60px;
+}
+
+.but:hover {
+	background-color: #E8C9F7;
+}
+
+.but {
+	border-radius: 5PX;
+}
+
+.sa {
+	margin-left: 50%;
+}
+</style>
+</head>
+
+<body>
+	<div class="headers">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container-fluid headers">
+				<button class="navbar-toggler" type="button"
+					data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+						<li class="abc"><a aria-current="page" href="receptionsHome">Home</a></li>
+						<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" style="color: white;" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Appointment </a>
+							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<li><a class="dropdownItem" href="addAppointment">New Patient</a></li>
+								<li><a class="dropdownItem" href="findDischargedPatientForm">Old Patient</a></li>
+								
+							</ul></li>
+						<li class="abc"><a href="findPatientForConfirmAppointment">Appointment Bill</a></li>
+						<li class="abc"><a href="pendingAppointment">Pending Appointment</a></li>
+						<li class="abc"><a href="addmittedPatient1">Admitted Patient</a></li>
+					
+					</ul>
+					<div style="width: 30px; width:30px;  color: white; margin-right: 30px" >
+						<a   href="index"> <img href="index" th:src="@{/photo/logout.jpg}" style="border-radius: 13px" height="30px" width="30px" alt="photo" >
+						</a>
+					</div>
+				</div>
+			</div>
+		</nav>
+	</div>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

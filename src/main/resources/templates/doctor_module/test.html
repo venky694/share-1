@@ -1,0 +1,168 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Pathology test</title>
+
+<style type="text/css">
+.b {
+	text-align: left;
+}
+
+tr td {
+	text-align: left;
+	border: 1px;
+}
+
+.c {
+	text-align: center;
+}
+
+.add {
+	background-color: orange;
+}
+
+.add:hover {
+	background-color: aqua;
+}
+
+.borders {
+	border: 1px solid gray;
+	font-size: 14px;
+	padding: 3px;
+}
+
+.width {
+	width: 75px;
+}
+</style>
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	$(function() {
+		$("#headers").load("doctorHeader");
+		$("#footer").load("footer");
+	});
+
+	$("#prospects_form").submit(function(e) {
+		e.preventDefault(); // <==stop page refresh==>
+	});
+</script>
+</head>
+<body>
+	<div id="headers"></div>
+	<h2>Give Test</h2>
+
+	<div>
+		<div
+			style="width: 40%; margin-left: 20px; float: left; background-color: white; padding: 20px; height: 445px;">
+			<form action="addTest" method="post">
+				<table style="margin-left: 10px">
+
+					<tr>
+						<td><h4>Select Test Name :</h4></td>
+					</tr>
+					<tr>
+
+						<td><input style="width: 400px; text-align: center;"
+							type="text" name="test_name" placeholder="--Select test name--"
+							list="name"> <datalist id="name">
+								<option th:each="name : ${name}" th:text="${name}"
+									th:value="${name}">
+							</datalist> <input type="text" name="patient_id" th:value="${patient.id}"
+							hidden=""> <input type="submit"
+							style="background-color: #BB8FCE; color: white;" value="Add"></td>
+					</tr>
+				</table>
+				<h5 th:text="${msg}"></h5>
+			</form>
+
+
+			<hr>
+
+			<h5 th:text="${msg}"></h5>
+		</div>
+
+		<div
+			style="width: 56%; margin-left: 10px; float: left; background-color: white; padding: 10px; height: 445px">
+			<table style="width: 100%">
+				<tr>
+					<td style="font-size: 17px">Patient ID</td>
+					<td style="font-size: 17px">:</td>
+					<td colspan="3" style="text-align: left; font-size: 20px"
+						th:text="${patient.id}"></td>
+
+				</tr>
+				<tr>
+					<td>Patient Name</td>
+					<td>:</td>
+					<td style="width: 250px" th:text=${patient.name}></td>
+
+					<td>Gender</td>
+					<td>:</td>
+					<td th:text=${patient.gender}></td>
+				</tr>
+				<tr>
+					<td>Mobile number</td>
+					<td>:</td>
+					<td th:text="${patient.mobile}"></td>
+					<td>Age</td>
+					<td>:</td>
+					<td th:text="${patient.age}"></td>
+				</tr>
+				<tr>
+					<td>Address</td>
+					<td>:</td>
+					<td  th:text="${patient.address}"></td>
+					<td>Email</td>
+					<td>:</td>
+					<td th:text="${patient.email}"></td>
+				</tr>
+				<tr>
+					<td>Consultant Name</td>
+					<td>:</td>
+					<td th:text="${ patient.doctor}"></td>
+					<td>Disease Name</td>
+					<td>:</td>
+					<td th:text="${ patient.problem}"></td>
+				</tr>
+			</table>
+			<table style="width: 100%; border-collapse: collapse;">
+				<tr>
+					<th class=" borders">Serial No.</th>
+					<th class=" borders">Test Name</th>
+					<th class=" borders" style="width: 80px">Remove</th>
+				</tr>
+				<tr th:each="givenTest,iterator:${givenTest}">
+					<td style="text-align: center;" class=" borders"
+						th:text="${iterator.index + 1}"></td>
+					<td class=" borders" th:text="${ givenTest.test_name}"></td>
+					<td class=" borders">
+						<form action="removeSelectedTestName" method="post">
+							<input type="text" name="id" th:value="${ givenTest.id}"
+								hidden=""> <input type="text" name="patient_id"
+								th:value="${ givenTest.patient_id}" hidden=""> <input
+								type="submit" value="Remove">
+						</form>
+
+					</td>
+				</tr>
+
+			</table>
+		</div>
+		<div
+			style="text-align: center; margin-top: 20px; margin-left: 45%; float: left;">
+			<form action="pathologyTestForm" method="post">
+				<input style="background-color: #BB8FCE" type="submit"
+					value="Generate Pathology test Form">
+			</form>
+		</div>
+	</div>
+
+
+
+	<div id="footer"></div>
+</body>
+</html>

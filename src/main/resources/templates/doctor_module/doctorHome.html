@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Home</title>
+
+<style type="text/css">
+body {
+	background-image: url('photo/doctorsHome.jpg');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+}
+</style>
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	$(function() {
+		$("#header").load("doctorHeader");
+		$("#footer").load("footer");
+	});
+</script>
+</head>
+<body>
+	<div id="header"></div>
+	<div style="margin: auto; text-align: center;">
+		<br>
+		<br>
+		<table style="margin-left:450px">
+			<tr>
+				<td><span style="font-size: 30px; padding-left: 6px">Welcome </span></td>
+				<td><span style="font-size: 30px; padding-left: 6px" th:text="${doctorName}"></span></td>
+			</tr>
+		</table>
+	</div>
+	<div id="footer"></div>
+</body>
+</html>

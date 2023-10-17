@@ -1,0 +1,236 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Prescription</title>
+
+<style type="text/css">
+.b {
+	text-align: left;
+}
+
+tr td {
+	text-align: left;
+	border: 1px;
+}
+
+.c {
+	text-align: center;
+}
+
+.add {
+	background-color: orange;
+}
+
+.add:hover {
+	background-color: aqua;
+}
+
+.borders {
+	border: 1px solid gray;
+	font-size: 14px;
+	padding: 3px;
+}
+
+.width {
+	width: 75px;
+}
+
+.generatePrescription {
+	background-color: #BB8FCE;
+	height: 35px;
+	width: 170px;
+	border-radius: 5px
+}
+
+.generatePrescription:hover {
+	background-color: orange;
+}
+
+.addMedicine {
+	background-color: #BB8FCE;
+	color: white;
+	width: 100px
+}
+
+.addMedicine:hover {
+	background-color: orange;
+}
+</style>
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	$(function() {
+		$("#headers").load("doctorHeader");
+		$("#footer").load("footer");
+	});
+
+	$("#prospects_form").submit(function(e) {
+		e.preventDefault(); // <==stop page refresh==>
+	});
+</script>
+</head>
+<body>
+	<div id="headers"></div>
+	<h2>Prescribing Medicine</h2>
+
+	<div>
+		<div style="width: 40%; margin-left: 20px; float: left; background-color: white; padding: 20px; height: 600px;">
+			<form th:action="@{/addMedicineToPrescription}" method="post">
+				<table style="margin-left: 20px; height: 240px; ">
+
+					<tr>
+						<td colspan="3"><h4>Select Medicine :</h4></td>
+					</tr>
+					<tr>
+						<td>Medicine Name</td>
+						<td>:</td>
+						<td><input style="width: 250px; text-align: center;" type="text" name="medicine_name" placeholder="--Select test name--" list="medicine_name" required="required"> <datalist id="medicine_name">
+								<option th:each="name : ${name}" th:text="${name}" style="background-color: gray;" th:value="${name}">
+							</datalist> <input type="text" name="patient_id" th:value="${patient.id}" hidden=""></td>
+
+
+					</tr>
+
+					<tr>
+						<td>Course Duration</td>
+						<td>:</td>
+
+						<td><select name="course_duration" style="width: 250px; height: 33px; text-align: center;" required="required">
+								<option value="" disabled selected style="color: white;">--Select Course Duration--</option>
+								<option value="1 day">1 day</option>
+								<option value="2 days">2 days</option>
+								<option value="3 days">3 days</option>
+								<option value="4 days">4 days</option>
+								<option value="5 days">5 days</option>
+								<option value="6 days">6 days</option>
+								<option value="7 days">7 days</option>
+								<option value="8 days">8 days</option>
+								<option value="9 days">9 days</option>
+								<option value="10 days">10 days</option>
+								<option value="11 days">11 days</option>
+								<option value="12 days">12 days</option>
+								<option value="13 days">13 days</option>
+								<option value="14 days">14 days</option>
+								<option value="3 days">3 Week</option>
+								<option value="1 month">1 month</option>
+								<option value="2 month">2 month</option>
+								<option value="Continue">Continue</option>
+
+						</select></td>
+					</tr>
+					<tr>
+						<td>Time of taken</td>
+						<td>:</td>
+						<td><select style="width: 250px; height: 33px; text-align: center;" type="text" name="taken_time" required="required">
+								<option value="" disabled selected>-- Select time --</option>
+								<option value="1-1-1">1-1-1</option>
+								<option value="1-0-1">1-0-1</option>
+								<option value="0-0-1">0-0-1</option>
+								<option value="1-0-0">1-0-0</option>
+
+						</select></td>
+					</tr>
+					<tr>
+						<td colspan="3" style="text-align: center;"><input type="text" name="patient_id" th:value="${patient.id}" hidden=""> <input class="addMedicine" type="submit" value="Add"></td>
+					</tr>
+
+				</table>
+				<h5 th:text="${msg}"></h5>
+			</form>
+			<h5 th:text="${msg}"></h5>
+		</div>
+
+		<div style="width: 56%; margin-left: 10px; float: left; background-color: white; padding: 10px; height: 600px">
+			<table style="width: 100%">
+				<tr>
+					<td style="font-size: 20px; width: 130px; border-bottom: 1px solid black">Patient ID</td>
+					<td style="font-size: 20px; border-bottom: 1px solid black">:</td>
+					<td colspan="4" style="text-align: left; font-size: 20px; border-bottom: 1px solid black" th:text="${patient.id}"></td>
+
+
+				</tr>
+				<tr>
+					<td>Patient Name</td>
+					<td>:</td>
+					<td  th:text=${patient.name}></td>
+
+					<td>Gender</td>
+					<td>:</td>
+					<td th:text=${patient.gender}></td>
+				</tr>
+				<tr>
+					<td>Mobile number</td>
+					<td>:</td>
+					<td th:text="${patient.mobile}"></td>
+					<td>Age</td>
+					<td>:</td>
+					<td th:text="${patient.age}"></td>
+				</tr>
+				<tr>
+					<td>Address:</td>
+					<td>:</td>
+					<td th:text="${patient.address}"></td>
+					<td>Email</td>
+					<td>:</td>
+					<td th:text="${patient.email}"></td>
+				</tr>
+				<tr>
+					<td>Consultant Name</td>
+					<td>:</td>
+					<td th:text="${ patient.doctor}"></td>
+					<td>Disease Name</td>
+					<td>:</td>
+					<td th:text="${ patient.problem}"></td>
+				</tr>
+			</table>
+			<table style="width: 100%; border-collapse: collapse;">
+				<tr>
+					<th style="width: 80px" class=" borders">Serial No.</th>
+					<th class=" borders">Medicine name</th>
+					<th class=" borders">Days</th>
+					<th class=" borders">Time</th>
+					<th class=" borders" style="width: 65px">Remove</th>
+				</tr>
+				<tr th:each="givenTest,iterator:${givenTest}">
+					<td style="text-align: center;" class=" borders" th:text="${iterator.index + 1}"></td>
+					<td class=" borders" th:text="${ givenTest.medicine_name}"></td>
+					<td class=" borders c" th:text="${ givenTest.course_duration}"></td>
+					<td class=" borders c" th:text="${ givenTest.taken_time}"></td>
+					<td class=" borders">
+						<form action="/removeSelectedMedicine" method="post">
+							<input type="text" name="id" th:value="${ givenTest.id}" hidden=""> <input type="text" name="patient_id" th:value="${ givenTest.patient_id}" hidden=""> <input type="submit" value="Remove">
+						</form>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div style="text-align: center; margin-top: 20px; margin-left: 35%; float: left;">
+			<form action="/generatePrescription" method="post">
+				<table>
+					<tr>
+						<td>Admission Condition</td>
+						<td>:</td>
+						<td><select style="width: 250px; height: 33px; text-align: center;" type="text" name="status" required="required">
+								<option value="" disabled selected>-- Select One --</option>
+								<option value="Yes">Yes</option>
+								<option value="NO">No</option>
+
+
+						</select></td>
+					</tr>
+				</table>
+				 <input type="text" name="id" hidden="" th:value="${patient.id}">
+				<br> <input class="generatePrescription" type="submit" value="Generate Priscription"> <br> <br> <br> <br> <br>
+			</form>
+		</div>
+
+	</div>
+
+
+
+	<div id="footer"></div>
+</body>
+</html>

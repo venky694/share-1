@@ -1,0 +1,91 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>All employee</title>
+
+<style type="text/css">
+.b {
+	text-align: left;
+}
+
+tr td {
+	border: 1px solid gray;
+	padding: 3px;
+}
+
+tr th {
+	border: 1px solid black;
+}
+
+.update {
+	width: 60px;
+	background-color: orange;
+}
+
+.delete {
+	width: 60px;
+	background-color: red;
+}
+
+.delete:hover {
+	background-color: aqua;
+}
+
+.update:hover {
+	background-color: aqua;
+}
+</style>
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	$(function() {
+		$("#headers").load("adminHeader");
+		$("#footer").load("footer");
+	});
+</script>
+</head>
+<body>
+	<div id="headers"></div>
+	<h2>All Employee</h2>
+	<div class="container">
+
+		<table border="1" style="width: 100%;">
+			<tr>
+				<th>ID</th>
+				<th>Medicine Name</th>
+				<th>Email</th>
+				<th>Mobile</th>
+				<th>Designation</th>
+				<th>Address</th>
+				<th>Photo</th>
+				<th colspan="2">Action</th>
+			</tr>
+			<tr th:each="object:${object}">
+				<td class="b" th:text="${object.id}"></td>
+				<td class="b" th:text="${object.name}"></td>
+				<td class="b" th:text="${object.email}"></td>
+				<td class="c" th:text="${object.mobile}"></td>
+				<td class="c" th:text="${object.designation}"></td>
+				<td class="c" th:text="${object.address}"></td>
+				<td style="height: 75px; width: 70px">
+					<div style="height: 75px; width: 70px">
+						<img th:src="@{/employee/} + ${object.photo}" class="card-img-top" alt="photo" height="75px" width="70px">
+					</div>
+				</td>
+				<td style="text-align: center;">
+					<form action="goUpdateForm" method="post">
+						<input type="text" th:value="${object.id}" hidden="" name="id"> <input class="update" type="submit" value="update">
+					</form>
+					<form action="#" method="post">
+						<input type="text" name="id" th:value="${object.id}" hidden=""> <input class="delete" type="submit" value="Delete">
+					</form>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div id="footer"></div>
+</body>
+</html>

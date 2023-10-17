@@ -1,0 +1,103 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Add Employee</title>
+
+<style type="text/css">
+tr td {
+	text-align: left;
+}
+
+td input {
+	width: 300px;
+	height: 35px;
+	font-size: 15px;
+}
+select{
+width: 300px;
+	height: 35px;
+	font-size: 15px;
+}
+
+table tr td {
+	padding-top: 20px;
+}
+</style>
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	$(function() {
+		$("#header").load("adminHeader");
+		$("#footer").load("footer");
+	});
+</script>
+</head>
+<body>
+	<div id="header"></div>
+	<h3 style="text-align: center;">Add Employee</h3>
+	<hr>
+	<div style="margin: auto; width: 40%; padding-left: 100px">
+		<form action="saveEmployee" method="post">
+			<table>
+				<tr>
+					<td>ID</td>
+					<td>:</td>
+					<td><input type="text" name="id" required="required"></td>
+				</tr>
+				<tr>
+					<td>name</td>
+					<td>:</td>
+					<td><input type="text" name="name" required="required"></td>
+				</tr>
+				<tr>
+					<td>Email ID</td>
+					<td>:</td>
+					<td><input type="text" name="email" required="required"></td>
+				</tr>
+				<tr>
+					<td>Mobile Number</td>
+					<td>:</td>
+					<td><input type="text" name="mobile" required="required"></td>
+				</tr>
+				<tr>
+					<td>Salary</td>
+					<td>:</td>
+					<td><input type="text" name="salary" required="required"></td>
+				</tr>
+				<tr>
+					<td>Designation</td>
+					<td>:</td>
+					<td><select name="designation" required="required" >
+							<option value="">--Select Designation--</option>
+							<option value="Pharmacist">Pharmacist</option>
+							<option value="Receptionist">Receptionist</option>
+							<option value="Doctor">Doctor</option>
+							<option value="HR">HR</option>
+							<option value="Nurse">Nurse</option>
+							<option value="Diagnoser">Diagnoser</option>
+							<option value="Officer Admission">Officer Admission</option>
+							<option value="Officer Billing">Officer Billing</option>
+					</select></td>
+				</tr>
+				<tr>
+					<td>Password</td>
+					<td>:</td>
+					<td><input type="password" name="password" required="required"></td>
+				</tr>
+				<tr>
+					<td colspan="3" style="text-align: center; padding-top: 25px">
+						<input style="width: 100px; background-color: #4CD6F1;"
+						type="submit" value="Save">
+					</td>
+				</tr>
+			</table>
+		</form>
+		<br>
+		<h4 th:text="${msg}"></h4>
+	</div>
+	<div id="footer"></div>
+</body>
+</html>

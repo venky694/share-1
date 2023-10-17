@@ -1,0 +1,375 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Procced To Bill</title>
+
+<style type="text/css">
+td input {
+	width: 300px;
+	height: 35px;
+	font-size: 18px;
+}
+
+select {
+	width: 300px;
+	height: 35px;
+	font-size: 18px;
+}
+
+table tr td {
+	text-align: left;
+	font-size: 18px;
+	padding-left: 5px;
+	
+}
+
+.borders {
+	border: 1px solid gray;
+	font-size: 18px;
+}
+
+.c {
+	text-align: center;
+}
+
+.deposit tr th {
+	border: 1px solid gray;
+	text-align: center;
+}
+
+.deposit tr td {
+	border: 1px solid gray;
+}
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+.submit {
+	background-color: #04AA6D;
+	color: white;
+	padding: 5px 5px;
+	margin: 8px 0;
+	border: none;
+	cursor: pointer;
+	width: 300px;
+}
+
+.submit:hover {
+	opacity: 0.8;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+	width: auto;
+	background-color: #f44336;
+}
+
+/* Center the image and position the close button */
+.imgcontainer {
+	text-align: center;
+	margin: 24px 0 12px 0;
+	position: relative;
+}
+
+span.psw {
+	float: right;
+	padding-top: 16px;
+}
+
+/* The Modal (background) */
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0, 0, 0); /* Fallback color */
+	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+	padding-top:170px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+	background-color: #fefefe;
+	margin: 5% auto 15% auto;
+	/* 5% from the top, 15% from the bottom and centered */
+	border: 1px solid #888;
+	width: 30%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button (x) */
+.close {
+	position: absolute;
+	right: 25px;
+	top: 0;
+	color: #000;
+	font-size: 25px;
+	font-weight: bold;
+}
+
+.close:hover, .close:focus {
+	color: red;
+	cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate {
+	-webkit-animation: animatezoom 0.6s;
+	animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+	from {-webkit-transform: scale(0)
+}
+
+to {
+	-webkit-transform: scale(1)
+}
+
+}
+@keyframes animatezoom {
+	from {transform: scale(0)
+}
+
+to {
+	transform: scale(1)
+}
+
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+	span.psw {
+		display: block;
+		float: none;
+	}
+	.cancelbtn {
+		width: 30%;
+	}
+}
+.negetive{
+   background-color:#F36C6C;
+    color:white;
+}
+.positive{
+
+    background-color: #84DA7A;
+
+}
+.bill{
+
+display: none
+
+}
+</style>
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	$(function() {
+		$("#header").load("billingHeader");
+		$("#footer").load("footer");
+	});
+</script>
+</head>
+<body>
+	<div id="header"></div>
+	
+	
+
+	<div style="width: 1020px; margin: auto; border: 1px solid #8EB7F9; background-color: white; text-align: left; padding-left: 30px; padding-right: 30px">
+		<p style="color: red; margin-left: 20%" th:text="${msg}"></p>
+		<p style="color: #1e3799;text-align: center; font-size: 30px; font-weight: bold;">Admitted Patient Profile</p>
+		<br>
+		<span style="border-bottom: 1px solid black; font-size: 25px; color: purple;">Patient Information :</span>
+		<table th:each="patient:${patient}">
+			<tr>
+				<td style="width: 140px">Patient Id</td>
+				<td>:</td>
+				<td style="width: 300px" th:text="${patient.id}"></td>
+				<td style="width: 140px">Age</td>
+				<td>:</td>
+				<td th:text="${patient.age}"></td>
+			</tr>
+			<tr>
+				<td>Patient Name</td>
+				<td>:</td>
+				<td style="font-weight: bold;" th:text="${patient.name}"></td>
+				<td>Gender</td>
+				<td>:</td>
+				<td th:text="${patient.gender}"></td>
+			</tr>
+			<tr>
+				<td>Mobile Number</td>
+				<td>:</td>
+				<td th:text="${patient.mobile}"></td>
+				<td>Problem</td>
+				<td>:</td>
+				<td th:text="${patient.problem}"></td>
+			</tr>
+			<tr>
+				<td>Address</td>
+				<td>:</td>
+				<td th:text="${patient.Address}"></td>
+				<td>Consultant</td>
+				<td>:</td>
+				<td th:text="${patient.doctor}"></td>
+			</tr>
+		</table>
+		<br> <span style="border-bottom: 1px solid black; font-size: 25px; color: purple;">Admission Information :</span>
+		<table th:each="admissionInfo:${admissionInfo}">
+			<tr>
+				<td style="width: 140px">Admission Date</td>
+				<td>:</td>
+				<td style="width: 300px" th:text="${admissionInfo.admission_date}"></td>
+				<td style="width: 140px">Days Count</td>
+				<td>:</td>
+				<td th:text="${totalDays} +' Days'"></td>
+			</tr>
+			<tr>
+				<td>Bed No</td>
+				<td>:</td>
+				<td th:text="${admissionInfo.bed_no}"></td>
+				<td>Floor</td>
+				<td>:</td>
+				<td th:text="${admissionInfo.floor}"></td>
+			</tr>
+		</table>
+
+		<br> <span style="border-bottom: 1px solid black; font-size: 25px; color: purple;">Patient Deposit Information:</span>
+		<table class="deposit" style="width: 100%">
+			<tr>
+				<th>Date</th>
+				<th>Description</th>
+				<th>Amount (taka)</th>
+			</tr>
+			<tr th:each="object:${deposit}">
+				<td style="text-align: center; width: 120px" th:text="${object.transaction_date}"></td>
+				<td th:text="${object.description}"></td>
+				<td style="text-align: center; width: 120px" th:text="${object.deposit}"></td>
+			</tr>
+			<tr>
+				<td colspan="2" style="font-weight: bold; text-align: center;">Total</td>
+				<td style="text-align: center; width: 120px; font-weight: bold;" th:text="${totalDeposit}"></td>
+			</tr>
+		</table>
+		<button class="submit" onclick="document.getElementById('id01').style.display='block'" style="width: auto; margin-left: 89.5%">Deposit now</button>
+
+		<br> <span style="border-bottom: 1px solid black; font-size: 25px; color: purple;">Patient All Cost:</span>
+		<table class="deposit" style="width: 100%">
+			<tr>
+				<th>Serial No.</th>
+				<th>Description</th>
+				<th>Quantity</th>
+				<th>Amount (taka)</th>
+			</tr>
+			<tr>
+				<td style="text-align: center">1</td>
+				<td style="padding-left: 5px">Bed charge (per day <span th:text="${bed_rate} +' ' + taka"></span> taka)
+				</td>
+				<td style="text-align: center; width: 120px" th:text="${totalDays} +' ' + days"></td>
+				<td style="text-align: center; width: 120px" th:text="${totalBedCharge}"></td>
+			</tr>
+			<tr>
+				<td style="text-align: center">2</td>
+				<td style="padding-left: 5px">Doctor Visit or Round fee (Per times 800 taka)</td>
+				<td style="text-align: center; width: 120px" th:text="${totalDays} +' ' + times"></td>
+				<td style="text-align: center; width: 120px" th:text="${visitigFee}"></td>
+			</tr>
+			<tr>
+				<td style="text-align: center">3</td>
+				<td style="padding-left: 5px">Nurse Fee (Per day tk. 300)</td>
+				<td style="text-align: center; width: 120px" th:text="${totalDays} +' ' + days"></td>
+				<td style="text-align: center; width: 120px" th:text="${nursFee}"></td>
+			</tr>
+			<tr th:each="object,iterate1:${medicineCost}">
+				<td style="text-align: center; width: 90px" th:text="${iterate1.index} +4"></td>
+				<td style="padding-left: 5px" th:text="${object.medicine_name}"></td>
+				<td style="text-align: center; width: 120px" th:text="${object.quantity}"></td>
+				<td style="text-align: center; width: 120px" th:text="${object.total}"></td>
+
+			</tr>
+			<tr th:each="object,iterate:${diagnosticCost}">
+				<td style="text-align: center; width: 120px" th:text="${iterate.index} +1 +${leanth}"></td>
+				<td style="padding-left: 5px" th:text="${object.test_name}"></td>
+				<td style="text-align: center; width: 120px">1</td>
+				<td style="text-align: center; width: 120px" th:text="${object.total}"></td>
+
+			</tr>
+			<tr>
+				<td colspan="3" style="text-align: center; font-weight: bold;">Total Cost</td>
+				<td style="text-align: center; width: 120px; font-weight: bold;" th:text="${totalCost}"></td>
+			</tr>
+			<tr>
+				<td colspan="3" style="text-align: center; font-weight: bold;">Balance</td>
+				<td ><input style="border: none; font-weight: bold; text-align:center; width: 100%" id="para" onload="addd()"  th:value="${balance}" readonly="readonly"></td>
+			</tr>
+		</table>
+		
+		
+	</div>
+
+		 <div style="margin: auto; text-align: center; padding-top:15px">
+		    <form action="dischargeAndCreateBill" method="post">
+		       <input class="submit" id="Button"  type="submit" value="Discharge and create Bill">
+		    </form>
+		</div>
+	<div id="id01" class="modal">
+		<div style="width: 35%; height:500px; margin: auto; ">
+			<form class="modal-content animate" action="cashDeposit" method="post">
+				<div class="container" style="margin-top: 30px">
+					<label for="psw"><b>Deposite Amount</b></label> <input type="number" placeholder="Enter Amount" name="amount" required>
+					<input type="submit" class="submit" value="Upate deposit">
+				</div>
+
+				<div  style="background-color: #f1f1f1; margin-bottom: 30px; " >
+					<button style="display:none; height: 30px" type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	
+	<script>
+		// Get the modal
+		var modal = document.getElementById('id01');
+
+		// When the user clicks anywhere outside of the modal, close it
+		window.onclick = function(event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+			}
+		}
+		var inputVal =parseInt( document.getElementById("para").value);
+		var mypara=document.querySelector("#para")
+		var mypara1=document.querySelector("#Button")
+		
+        window.onload =function addd(){
+			if(inputVal<0){
+            mypara.classList.add("negetive")
+            mypara1.classList.add("bill")
+            document.getElementById("Button").disabled = true;
+            
+			}
+			if(inputVal>0){
+            mypara.classList.add("positive")
+			}
+        }
+		
+      
+	</script>
+
+	<div id="footer"></div>
+</body>
+</html>

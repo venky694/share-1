@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" href="../home-style.css">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Welcome to Spring Web MVC project</title>
+
+<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+<style type="text/css">
+.headers {
+	top: 0;
+	width: 100%;
+	position: fixed;
+	background: #2196F3;
+	color: white;
+	height: 45px
+}
+
+body {
+	padding-top: 45px;
+	text-align: center;
+	background-color: #D7D4CE;
+	
+}
+
+.but:hover {
+	background-color: #E8C9F7;
+}
+
+.but {
+	border-radius: 5PX;
+}
+
+.sa {
+	margin-left: 50%;
+}
+
+.abc {
+	color: black;
+	padding-bottom: 1px;
+	padding-top: 1px;
+}
+
+.abc:hover {
+	background-color: #BFC9CA;
+	width: 100%
+}
+
+.dropdown-menu {
+	background-color: #F3F7FC;
+	width: 220px;
+}
+
+.navbar-collapse {
+	color: white;
+}
+</style>
+</head>
+
+<body>
+	<div class="headers">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container-fluid headers">
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+						<li class="nav-item"><a style="color: white; margin-left: 100px" class="nav-link navbarItem" aria-current="page" href="index">Home</a></li>
+
+						<li class="nav-item dropdown"><a class="nav-link dropdown-toggle navbarItem" href="#" id="navbarDropdown" style="color: white;" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Medicine </a>
+							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<li class="list"><a class="abc" href="showAll">Show All Medicine</a></li>
+								<li><a class="abc" href="addNewMedicine">Add New Medicine</a></li>
+								<li><a class="abc" href="reorder_medicineList">Re-order Medicine</a></li>
+								<li><a class="abc" href="findMedicine">Update Medicine</a></li>
+
+
+							</ul></li>
+						<li class="nav-item dropdown"><a class="nav-link dropdown-toggle navbarItem" href="#" id="navbarDropdown" style="color: white;" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Sale </a>
+							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<li><a class="abc" href="outSideSale">Out Side Sale</a></li>
+								<li><a class="abc" href="insidSale">Inside Sale</a></li>
+							</ul></li>
+						<li class="nav-item dropdown"><a class="nav-link dropdown-toggle navbarItem" href="#" id="navbarDropdown" style="color: white;" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Report </a>
+							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<li><a class="abc" th:href="@{'todaySale'}">Today Sale</a></li>
+								<li><a class="abc" href="monthlySale">Monthly Sale</a></li>
+								<li><a class="abc" href="yearlySale">Yearly Sale</a></li>
+								<li><a class="abc" href="dailysaleGraph">Daily Sales in Graph</a></li>
+								<li><a class="abc" href="monthlySaleGraph">Monthly Sales in Graph</a></li>
+								<li><a class="abc" href="searchInvoice">Search invoice </a></li>
+							</ul></li>
+					</ul>
+					<form class="d-flex">
+						<input class="form-control me-2 navbarItem" type="search" placeholder="Search" aria-label="Search">
+						<button style="color: white;" class="btn btn-outline-success navbarItem" type="submit">Search</button>
+					</form>
+				</div>
+			</div>
+		</nav>
+	</div>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

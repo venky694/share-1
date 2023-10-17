@@ -1,0 +1,203 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Add Employee</title>
+
+<style type="text/css">
+tr td {
+	text-align: left;
+}
+
+td input {
+	width: 300px;
+	height: 35px;
+	font-size: 15px;
+}
+
+select {
+	width: 300px;
+	height: 35px;
+	font-size: 15px;
+}
+
+table tr td {
+	padding-top: 20px;
+	color: white;
+	font-size: 19px
+}
+
+.textFiled {
+	height: 40px;
+	border: 1px solid gray;
+	border-radius: 3px;
+	background-color: #DDDDDD;
+	font-size: 19px
+}
+
+.submitBtn {
+	height: 40px;
+	width: 100px;
+	border-radius: 5px;
+	background-color: #CDA3CA;
+}
+
+.submitBtn:hover {
+	background-color: #82ccdd;
+}
+</style>
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	$(function() {
+		$("#header").load("adminHeader");
+		$("#footer").load("footer");
+	});
+</script>
+</head>
+<body>
+	<div id="header"></div>
+
+	<div style="margin: auto; width: 80%; padding-left: 100px; background-color: #799B7A; border-radius: 5px">
+		<h3 style="text-align: center; color: white;">Employee Registration Form</h3>
+		<form action="saveEmployee" method="POST">
+			<div style="width: 50%; float: left">
+				<table>
+					<tr>
+						<td>Employee ID</td>
+						<td>:</td>
+						<td><input style="text-align: center;" class="textFiled" type="text" name="id" required="required" readonly="readonly" th:value="${id}"></td>
+					</tr>
+					<tr>
+						<td>Employee Name</td>
+						<td>:</td>
+						<td><input class="textFiled" type="text" name="name" required="required"></td>
+					</tr>
+					<tr>
+						<td>Email ID</td>
+						<td>:</td>
+						<td><input class="textFiled" type="text" name="email" required="required"></td>
+					</tr>
+					<tr>
+						<td>Mobile Number</td>
+						<td>:</td>
+						<td><input class="textFiled" type="text" name="mobile" required="required"></td>
+					</tr>
+					<tr>
+						<td>Salary</td>
+						<td>:</td>
+						<td><input class="textFiled" type="text" name="salary" required="required"></td>
+					</tr>
+					<tr>
+						<td>Designation</td>
+						<td>:</td>
+						<td><select class="textFiled" name="designation" required="required">
+								<option value="">--Select Designation--</option>
+								<option value="Pharmacist">Pharmacist</option>
+								<option value="Receptionist">Receptionist</option>
+								<option value="Doctor">Doctor</option>
+								<option value="HR">HR</option>
+								<option value="Nurse">Nurse</option>
+								<option value="Lab Assistance">Lab Assistance</option>
+								<option value="Officer Admission">Officer Admission</option>
+								<option value="Officer Billing">Officer Billing</option>
+						</select></td>
+					</tr>
+					<tr>
+						<td>Birth Date</td>
+						<td>:</td>
+						<td><input class="textFiled" type="date" name="birth_day" required="required"></td>
+					</tr>
+
+				</table>
+			</div>
+
+			<div style="width: 50%; float: left; ">
+				<table>
+					<tr>
+						<td>Photo</td>
+						<td>:</td>
+						<td><input id="imgInp" class="textFiled" style="background-color: #799B7A; width: 250px; padding-top: 5px; border: none" type="file" name="photo" required="required"></td>
+					</tr>
+					<tr>
+						<td colspan="3">
+							<div style="height: 150px; width: 142px; margin-left: 140px; border: 1px solid gray; margin-bottom: 12px; background-color: #ddd">
+								<img id="blah" src="#" height="150px" width="140px" />
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>Qualification</td>
+						<td>:</td>
+						<td><select class="textFiled" name="qualification" required="required">
+								<option value="">--Select Qualification--</option>
+								<option value="MBA(Accounting)">MBA(Accounting)</option>
+								<option value="BBA(Accounting)">BBA(Accounting)</option>
+								<option value="MBA(Marketing)">MBA(Marketing)</option>
+								<option value="BBA(Marketing)">BBA(Marketing)</option>
+								<option value="MBA(Finance)">MBA(Finance)</option>
+								<option value="BBA(Finance)">BBA(Finance)</option>
+								<option value="MA(English)">MA(English)</option>
+								<option value="MBBS, BCS (Health), MCPS (Pediatrics), FCPS (Pediatrics), MD (Neonatal)">MBBS, BCS (Health), MCPS (Pediatrics), FCPS (Pediatrics), MD (Neonatal)</option>
+								<option value="CSC">MBBS, FCPS (Pediatrics)</option>
+								<option value="CSC">MBBS, MD (Cardiology)</option>
+								<option value="CSC">BDS (DU), PGT (OMS)</option>
+								<option value="CSC">MBBS, FCPS (Hematology)</option>
+								<option value="MBBS, DCH, CCD (BIRDEM)">MBBS, DCH, CCD (BIRDEM)</option>
+								<option value="MBBS, MCPS (Medicine), MD (Cardiology), AMACC (USA)">MBBS, MCPS (Medicine), MD (Cardiology), AMACC (USA)</option>
+								<option value="MBBS, BCS (Health), MCPS (EYE), MS (EYE)">MBBS, BCS (Health), MCPS (EYE), MS (EYE)</option>
+								<option value="MBBS, BCS (Health), MCPS (EYE), Training (Microsurgery)">MBBS, BCS (Health), MCPS (EYE), Training (Microsurgery)</option>
+								<option value="MBBS, MS (Urology)">MBBS, MS (Urology)</option>
+								<option value="MBBS, BCS (Health), FCPS (Medicine), MD (Cardiology)">MBBS, BCS (Health), FCPS (Medicine), MD (Cardiology)</option>
+
+						</select></td>
+					</tr>
+					<tr>
+						<td>Address</td>
+						<td>:</td>
+						<td><input class="textFiled" type="text" name="address" required="required"></td>
+					</tr>
+					<tr>
+						<td>Password</td>
+						<td>:</td>
+						<td><input class="textFiled" type="password" name="password" required="required"></td>
+					</tr>
+
+				</table>
+			</div>
+			<div style="clear: both;"></div>
+			<br>
+			<div style="text-align: center;">
+				<input class="submitBtn" type="submit" value="Save">
+
+			</div>
+
+		</form>
+		<br>
+		<div style="text-align: center;">
+			<h4 th:text="${msg}"></h4>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		function readURL(input) {
+			if (input.files && input.files[0]) {
+				var reader = new FileReader();
+
+				reader.onload = function(e) {
+					$('#blah').attr('src', e.target.result);
+				}
+
+				reader.readAsDataURL(input.files[0]);
+			}
+		}
+
+		$("#imgInp").change(function() {
+			readURL(this);
+		});
+	</script>
+	<div id="footer"></div>
+</body>
+</html>

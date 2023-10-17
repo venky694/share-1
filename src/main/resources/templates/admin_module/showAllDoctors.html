@@ -1,0 +1,100 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>All employee</title>
+
+<style type="text/css">
+.update {
+	width: 60px;
+	background-color: orange;
+}
+
+.delete {
+	width: 60px;
+	background-color: red;
+}
+
+.delete:hover {
+	background-color: aqua;
+}
+
+.update:hover {
+	background-color: aqua;
+}
+
+tr td {
+	text-align: left;
+	font-size: 16px;
+	font-family: sans-serif;
+}
+</style>
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	$(function() {
+		$("#headers").load("adminHeader");
+		$("#footer").load("footer");
+	});
+</script>
+</head>
+<body>
+	<div id="headers"></div>
+	<h2>All Doctors</h2>
+	<div class="container" style="background-color: white;">
+
+		<div th:each="object:${object}">
+			<div style="height: 160px; width: 150px; float: left; margin-right: 15px">
+				<img th:src="@{/employee/} + ${object.photo}" class="card-img-top" alt="photo" height="160px" width="150px">
+			</div>
+			<div style="height: 160px; width: 850px; float: left; padding-top: 10px; padding-left: 10px">
+				<table style="width:100%">
+					<tr>
+						<td style="width:180px">Doctor's Name</td>
+						<td>:</td>
+						<td colspan="2" style="color: blue;" th:text="${object.name}"></td>
+					</tr>
+					<tr>
+						<td>Designation</td>
+						<td>:</td>
+						<td colspan="2" th:text="${object.designation}"></td>
+					</tr>
+					<tr>
+						<td>Highest Qualification</td>
+						<td>:</td>
+						<td colspan="2" th:text="${object.qualification}"></td>
+					</tr>
+
+					<tr>
+						<td>Mobile Number</td>
+						<td>:</td>
+						<td colspan="2" th:text="${object.mobile}"></td>
+					</tr>
+					<tr>
+						<td>Email Address</td>
+						<td>:</td>
+						<td colspan="2" th:text="${object.email}"></td>
+					</tr>
+					<tr>
+						<td>Present Address</td>
+						<td>:</td>
+						<td th:text="${object.address}"></td>
+						<td style="text-align: right;">
+							<form action="goUpdateForm" method="post">
+								<input type="text" th:value="${object.id}" hidden="" name="id"> <input class="update" type="submit" value="Edit">
+							</form>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div style="clear: both;"></div>
+			<hr>
+		</div>
+
+
+	</div>
+	<div id="footer"></div>
+</body>
+</html>

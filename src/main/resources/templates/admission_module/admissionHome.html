@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Home</title>
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<style type="text/css">
+tr  td {
+	border: 1px solid gray;
+	font-size: 20px
+}
+
+tr  th {
+	border: 1px solid gray;
+		font-size: 20px
+}
+
+.header {
+	width:120px;
+	
+}
+</style>
+<script>
+	$(function() {
+		$("#header").load("admissionHeader");
+		$("#footer").load("footer");
+	});
+</script>
+</head>
+<body>
+	<div id="header"></div>
+	<div style="margin: auto; text-align: center;">
+		<h4>Welcome to Admission Department</h4>
+	</div>
+	<br>
+	<br>
+
+	<div style="width: 80%; margin: auto; background-color: white; padding: 15px 20px;">
+		<p style="text-align: left; font-size: 25px; color: blue;">Dashboard :</p>
+		<table class="table table-striped " border="1">
+			<tr>
+				<th class="header">Bed Type</th>
+				<th class="header">Vacant</th>
+				<th class="header">Occupied</th>
+				<th class="header">Under Maintenance</th>
+				<th class="header">Total</th>
+			</tr>
+			<tr>
+				<td>Type-A</td>
+				<td th:text="${typeA1}"></td>
+				<td th:text="${typeA2}"></td>
+				<td th:text="${typeA3}"></td>
+				<td th:text="${typeATotal}"></td>
+			</tr>
+			<tr>
+				<td>Type-B</td>
+				<td th:text="${typeB1}"></td>
+				<td th:text="${typeB2}"></td>
+				<td th:text="${typeB3}"></td>
+				<td th:text="${typeBTotal}"></td>
+			</tr>
+			<tr>
+				<td>Type-C</td>
+				<td th:text="${typeC1}"></td>
+				<td th:text="${typeC2}"></td>
+				<td th:text="${typeC3}"></td>
+				<td th:text="${typeCTotal}"></td>
+			</tr>
+			<tr>
+				<td>Type-D</td>
+				<td th:text="${typeD1}"></td>
+				<td th:text="${typeD2}"></td>
+				<td th:text="${typeD3}"></td>
+				<td th:text="${typeDTotal}"></td>
+			</tr>
+			<tr>
+				<th>Total</th>
+				<th th:text="${Available}"></th>
+				<th th:text="${Occupied}"></th>
+				<th th:text="${underMaintenance}"></th>
+				<th th:text="${grandTotal}"></th>
+			</tr>
+		</table>
+	</div>
+	<div id="footer"></div>
+</body>
+</html>

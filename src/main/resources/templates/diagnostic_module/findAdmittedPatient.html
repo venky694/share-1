@@ -1,0 +1,26 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Find patient for bill</title>
+<script src="//code.jquery.com/jquery-1.10.2.js"></script> 
+<script>  
+$(function(){ 
+  $("#header").load("diagnosticHeader");  
+  $("#footer").load("footer");  
+}); 
+</script> 
+</head>
+<body>
+<div id="header"></div> 
+	<h3>Search Admitted Patient</h3>
+        <hr>
+        <form method="POST" action="searchAdmittedPatient" style="margin-left: auto; margin-right: auto;">
+            <input style="height: 29px; width:200px; text-align: center;" type="number" maxlength="8" name="id" required="required"  placeholder="Enter admitted Patient ID"/>
+            <input type="submit" value="Search" />
+        </form>
+        <p style="color:#E51447;" th:text="${msg}"></p>
+<div id="footer"></div> 
+</body>
+</html>

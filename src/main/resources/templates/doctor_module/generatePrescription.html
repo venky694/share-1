@@ -1,0 +1,162 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Prescription</title>
+
+<style type="text/css">
+tr td {
+	text-align: left;
+	font-size: 18px
+}
+
+.hrrr {
+	height: 5px;
+	background-color: red;
+	border: none;
+}
+
+.col {
+	border: 1px solid black;
+	padding: 5px;
+}
+</style>
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	$(function() {
+		$("#header").load("doctorHeader");
+		$("#footer").load("footer");
+	});
+	function printDiv(divName) {
+		var printContents = document.getElementById(divName).innerHTML;
+		var originalContents = document.body.innerHTML;
+
+		document.body.innerHTML = printContents;
+
+		window.print();
+
+		document.body.innerHTML = originalContents;
+	}
+</script>
+</head>
+<body>
+	<div id="header"></div>
+	<div id="printableArea" style="height: auto; width: 70%; height :1000px; margin: auto; background-color: white; padding: 25px" th:each="object:${patientDetails}">
+
+		<div style="text-align: left; float: left; width: 60%;">
+
+			<table>
+				<tr>
+					<td style="font-size: 30px; font-weight:  bold; color: orange; width: 100px">ProFessor </td>
+					<td style="font-size: 30px; font-weight:  bold; color: orange; padding-left: 6px"  th:text= "${object.doctor}"></td>
+				</tr>
+				<tr>
+					<td colspan="2">MBBS. FCPS (Medicine)</td>
+				</tr>
+				<tr>
+					<td colspan="2">Medicine Specialist</td>
+				</tr>
+				<tr>
+					<td colspan="2" style="color: blue;">Professor, Dept, OF Medicine</td>
+				</tr>
+				<tr>
+					<td colspan="2">Sir Salimullah Medical College & Mitprod Hospital</td>
+				</tr>
+			</table>
+		</div>
+		<div style="text-align: left; float: left; width: 20.9%; margin-left: 95px">
+
+			<img th:src="@{/photo/name with logo.jpg}" class="card-img-top" alt="photo" height="150px" width="150%">
+
+		</div>
+		<h4 style="text-align: center;">_________________________________________________________________________________________</h4>
+
+		<h4 style="text-align: right;"></h4>
+
+
+		<table style="width: 100%">
+			<tr>
+				<td colspan="3" style="font-size: 25px"><u>Patient Details :</u></td>
+				<td colspan="3" style="font-size: 25px; text-align: right;" th:text=${todayDate}></td>
+
+			</tr>
+			<tr>
+
+				<td style="width: 150px">Patient Id</td>
+				<td>:</td>
+				<td th:text=${object.id}></td>
+				<td style="width: 100px">Patient Age</td>
+				<td>:</td>
+				<td th:text=${object.age}></td>
+
+			</tr>
+			<tr>
+				<td>Patient Name</td>
+				<td>:</td>
+				<td th:text=${object.name}></td>
+				<td>Gender</td>
+				<td>:</td>
+				<td th:text=${object.gender}></td>
+			</tr>
+
+			<tr>
+				<td>Mobile Number</td>
+				<td>:</td>
+				<td th:text=${object.mobile}></td>
+				<td>Address</td>
+				<td>:</td>
+				<td th:text=${object.address}></td>
+			</tr>
+
+
+		</table>
+		<div style="height: 480px;">
+			<table border="1" style="width: 100%; border-collapse: collapse;">
+				<tr>
+					<th class="col" style="width: 100px">Serial No.</th>
+					<th class="col">Medicine Name</th>
+					<th class="col">Days</th>
+					<th class="col">Times</th>
+				</tr>
+				<tr th:each="givenTest,iterator:${givenTest}">
+					<td class="col" style="text-align: center;" th:text="${iterator.index + 1}"></td>
+					<td class="col" th:text="${givenTest.medicine_name}"></td>
+					<td class="col" style="text-align: center;" th:text="${givenTest.course_duration}"></td>
+					<td class="col" style="text-align: center;" th:text="${givenTest.taken_time}"></td>
+				</tr>
+			</table>
+			
+		</div>
+		<h4 style="text-align: center;">_________________________________________________________________________________________</h4>
+
+			<div style="width: 80px; height: 100px; float: left;">
+				<img th:src="@{/photo/logo.png}" class="card-img-top" alt="photo" height="80px" width="80px">
+			</div>
+			<div style="width:550px; height: 100px; float: left;">
+				<table>
+					<tr>
+						<td style="font-size: 25px; font-weight: bold; color: blue;">Square Hospital Ltd</td>
+					</tr>
+					<tr>
+						<td style="">Panthopath, Dhaka, Bangladesh</td>
+					</tr>
+					<tr>
+						<td>Tel: 0036 8542 8563 Moble: 01710279904 Hotline : 01303634525 </td>
+						
+					</tr>
+				</table>
+			</div>
+	</div>
+
+	<div>
+		<input style="margin-top: 30px" type="button" onclick="printDiv('printableArea')" value="Print and Save" />
+	</div>
+
+	<h4 th:text="${msg}"></h4>
+
+	<div id="footer"></div>
+</body>
+</html>

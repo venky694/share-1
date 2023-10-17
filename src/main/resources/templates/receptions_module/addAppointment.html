@@ -1,0 +1,108 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Appointment</title>
+
+<style type="text/css">
+tr td {
+	text-align: left;
+}
+
+td input {
+	width: 300px;
+	height: 35px;
+	font-size: 15px;
+}
+
+select {
+	width: 300px;
+	height: 35px;
+	font-size: 15px;
+}
+
+table tr td {
+	padding-top: 10px;
+	font-size: 20px;
+}
+</style>
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	$(function() {
+		$("#header").load("receptionHeader");
+		$("#footer").load("footer");
+	});
+</script>
+</head>
+<body>
+	<div id="header"></div>
+	<h3 style="text-align: center;">Pre-Appointment</h3>
+	<hr>
+	<div style="margin: auto; width: 45%; padding-left: 100px">
+		<form action="saveAppointment" method="post">
+			<table>
+				<tr>
+					<td>Patient ID</td>
+					<td>:</td>
+					<td><input type="text" name="id" required="required" th:value="${id}" readonly="readonly"></td>
+				</tr>
+				<tr>
+					<td>Patient Name</td>
+					<td>:</td>
+					<td><input type="text" name="name" required="required"></td>
+				</tr>
+				<tr>
+					<td>Patient Mobile No</td>
+					<td>:</td>
+					<td><input type="text" name="mobile" required="required"></td>
+				</tr>
+				<tr>
+					<td>Patient Gender</td>
+					<td>:</td>
+					<td><select name="gender">
+							<option>--Select Gender--</option>
+							<option value="Male">Male</option>
+							<option value="Female">Female</option>
+							<option value="Others">Others</option>
+					</select></td>
+				</tr>
+				<tr>
+					<td>Patient Age</td>
+					<td>:</td>
+					<td><input type="text" name="age" required="required"></td>
+				</tr>
+				<tr>
+					<td>Problem</td>
+					<td>:</td>
+					<td><input style="width: 250px; text-align: center; width: 300px" type="text" name="problem" list="name" required="required"> <datalist id="name">
+							<option th:each="diseaseName : ${diseaseName}" th:text="${diseaseName}" style="background-color: gray;" th:value="${diseaseName}">
+						</datalist> <input type="text" name="name" th:value="${name}" hidden=""></td>
+
+				</tr>
+				<tr>
+					<td>Appointment Date</td>
+					<td>:</td>
+					<td><input type="date" name="app_date" required="required"></td>
+				</tr>
+				<tr>
+					<td>Consultant name</td>
+					<td>:</td>
+					<td><select name="doctor">
+							<option value="" disabled selected>Select Consultant</option>
+							<option th:each="doctor : ${doctor}" th:text="${doctor}" th:value="${doctor}"></option>
+					</select></td>
+				</tr>
+				<tr>
+					<td colspan="3" style="text-align: center; padding-top: 25px"><input style="width: 100px; background-color: #4CD6F1;" type="submit" value="Save"></td>
+				</tr>
+			</table>
+		</form>
+		<br>
+		<h4 style="text-align: center;" th:text="${msg}"></h4>
+	</div>
+	<div id="footer"></div>
+</body>
+</html>

@@ -1,0 +1,145 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Procced To Bill</title>
+
+<style type="text/css">
+
+
+td input {
+	width: 300px;
+	height: 35px;
+	font-size: 18px;
+}
+
+select {
+	width: 300px;
+	height: 35px;
+	font-size: 18px;
+}
+
+table tr td {
+text-align: left;
+	font-size: 18px;
+	padding: 5px;
+}
+
+.borders {
+	border: 1px solid gray;
+	font-size: 18px;
+}
+.c{
+text-align: center;
+}
+</style>
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	$(function() {
+		$("#header").load("header");
+		$("#footer").load("footer");
+	});
+</script>
+</head>
+<body>
+	<div id="header"></div>
+	<h3 style="text-align: center;">Customer Information</h3>
+	<hr>
+	<div
+		style=" width: 1020px; margin: auto; background-color: #DCF0D2; padding: 10px" >
+		<form action=SaveInsideSaleAndBill method="post">
+			<div>
+				<table th:each="patient:${patient}" style="width: 49%; float: left;">
+					<tr>
+						<td>Patient ID</td>
+						<td>:</td>
+						<td>
+						<input  type="text" name="voucher_no" required="required" th:value=${voucherNo} hidden="" >
+						<input  style="text-align: center;"type="text" name="voucher_no" required="required" th:value=${patient.id} >
+						</td>
+					</tr>
+					<tr>
+						<td>Patient Name</td>
+						<td>:</td>
+						<td>
+						<input type="text" name="customer_name" required="required"  th:value="${patient.name}">
+						
+						</td>
+					</tr>
+					<tr>
+						<td>Mobile Number</td>
+						<td>:</td>
+						<td><input type="text" name="mobile" required="required" th:value="${patient.mobile}"></td>
+					</tr>
+					<tr>
+						<td>Address</td>
+						<td>:</td>
+						<td><input type="text" name="address" required="required" th:value="${patient.address}"></td>
+					</tr>
+				</table>
+				<br>
+				<br>
+				<table th:each="admittionInfo:${admittionInfo}" style="width: 49%; float: left;">
+					
+					<tr>
+						<td>Bed_no</td>
+						<td>:</td>
+						<td>
+						<input type="text" name="customer_name" required="required"  th:value="${admittionInfo.bed_no}">
+						
+						</td>
+					</tr>
+					<tr>
+						<td>Floor</td>
+						<td>:</td>
+						<td><input type="text" name="mobile" required="required" th:value="${admittionInfo.floor}"></td>
+					</tr>
+					<tr>
+						<td>Admission Date</td>
+						<td>:</td>
+						<td><input type="text" name="address" required="required" th:value="${admittionInfo.admission_date}"></td>
+					</tr>
+				</table>
+			</div>
+
+			<div>
+				<table style="width: 100%; border-collapse: collapse;">
+					<tr>
+						<th class=" borders">Medicine Name</th>
+						<th class=" borders width">Price</th>
+						<th class=" borders width">Quantity</th>
+						<th class=" borders width">Sub Total</th>
+						<th class=" borders width">Discount</th>
+						<th class=" borders width">Total</th>
+					</tr>
+					<tr th:each="object:${voucherItem}">
+						<td class="borders" th:text="${object.medicine_name}"></td>
+						<td class="c borders" th:text="${object.price}"></td>
+						<td class="c borders" th:text="${object.quantity}"></td>
+						<td class="c borders" th:text="${object.subtotal}"></td>
+						<td class="c borders" th:text="${object.discount}"></td>
+						<td class="c borders" th:text="${object.total}"></td>
+					</tr>
+					<tr>
+						<th colspan="3" class=" borders">Grand Total</th>
+						<th class=" borders" th:text="${subtotal}"></th>
+						<th class=" borders" th:text="${discount}"></th>
+						<th class=" borders" th:text="${total}"></th>
+					</tr>
+					<tr>
+						<td colspan="6" class="c">
+						<input type="submit"style="width: 200px; background-color: #67AEF0; color: white; margin-top:20px; font-size: 18px; height: 35px" value="Save and Generate Bil" ></td>
+					</tr>
+				</table>
+			</div>
+			<br>	
+		</form>
+	</div>
+	<h4 th:text="${msg}"></h4>
+
+	<div id="footer"></div>
+</body>
+</html>

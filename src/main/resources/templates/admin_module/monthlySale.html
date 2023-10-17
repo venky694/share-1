@@ -1,0 +1,123 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Monthly Sale Report</title>
+<style type="text/css">
+.b {
+	text-align: left;
+}
+
+tr td {
+	border: 1px solid gray;
+	padding: 3px;
+}
+
+tr th {
+	border: 1px solid black;
+	text-align: center;
+}
+
+.update {
+	background-color: orange;
+}
+
+.delete {
+	background-color: red;
+}
+
+.delete:hover {
+	background-color: aqua;
+}
+
+.update:hover {
+	background-color: aqua;
+}
+
+option {
+	color: black;
+}
+
+.center {
+	text-align: center;
+}
+</style>
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	$(function() {
+		$("#headers").load("adminHeader");
+		$("#footer").load("footer");
+	});
+
+	function printDiv(divName) {
+		var printContents = document.getElementById(divName).innerHTML;
+		var originalContents = document.body.innerHTML;
+		document.body.innerHTML = printContents;
+		window.print();
+		document.body.innerHTML = originalContents;
+	}
+</script>
+</head>
+<body>
+	<div id="headers"></div>
+
+
+	<div id="printableArea" style="width: 80%; margin: auto; text-align: left;">
+		<h3 style="text-align: center;">Monthly Sale Report</h3>
+		<hr style="margin-bottom: 0px">
+		<form action="admin_searchMonthlySale" method="post">
+			<select style="width: 120px; color: #999; height: 30px;" name="date" id="date" required="required" placeholder="select month">
+				<option value="" disabled selected>Select month</option>
+				<option value="2021-01-01">January</option>
+				<option value="2021-02-01">February</option>
+				<option value="2021-03-01">March</option>
+				<option value="2021-04-01">April</option>
+				<option value="2021-05-01">May</option>
+				<option value="2021-06-01">June</option>
+				<option value="2021-07-01">July</option>
+				<option value="2021-08-01">August</option>
+				<option value="2021-09-01">September</option>
+				<option value="2021-10-01">October</option>
+				<option value="2021-11-01">November</option>
+				<option value="2021-12-01">December</option>
+			</select> <input type="submit" value="Search">
+		</form>
+		<table border="1" style="width: 100%; border-collapse: collapse;" class="table table-striped">
+			<tr>
+				<th>Voucher No.</th>
+				<th>Customer Name</th>
+				<th>Date</th>
+				<th>Sub total</th>
+				<th>Discount</th>
+				<th>Total</th>
+				<th>Status</th>
+			</tr>
+			<tr th:each="object:${monthlySale}">
+				<td class="center" th:text="${object.voucher_no}"></td>
+				<td class="b" th:text="${object.customer_name}"></td>
+				<td class="center" th:text="${object.date}"></td>
+				<td class="center" th:text="${object.subtotal}"></td>
+				<td class="center" th:text="${object.discount}"></td>
+				<td class="center" th:text="${object.total}"></td>
+				<td class="center" th:text="${object.status}"></td>
+			</tr>
+			<tr>
+				<th class="center" colspan="3">Monthly Total Sales</th>
+
+				<th class="center" th:text="${monthlyTotal[0]}"></th>
+				<th class="center" th:text="${monthlyTotal[1]}"></th>
+				<th class="center" th:text="${monthlyTotal[2]}"></th>
+				<td class="center"></td>
+			</tr>
+		</table>
+
+	</div>
+	<div>
+		<input style="margin-top: 30px; background-color: #69C8FF" type="button" onclick="printDiv('printableArea')" value="Print and Save" /> <br> <br>
+	</div>
+	<div id="footer"></div>
+</body>
+</html>

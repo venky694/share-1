@@ -1,0 +1,200 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title th:text="${voucherNo}">Medicine Bill</title>
+
+<style type="text/css">
+tr td {
+	text-align: left;
+	font-size: 22px;
+	
+	
+}
+
+.hrrr {
+	height: 5px;
+	background-color: red;
+	border: none;
+}
+
+.col {
+	border: 1px solid black;
+	padding: 10px;
+}
+
+.borders {
+	border: 1px solid gray;
+	font-size: 22px;
+	padding: 3px;
+	height: 30px;
+}
+
+.c {
+	text-align: center;
+}
+
+.header {
+	font-size: 50px;
+	margin-bottom: 0px;
+	padding-top: 0px;
+	padding-top: 0px;
+	margin-top: 0px;
+	font-weight: bold;
+}
+
+.address {
+	font-size: 20px;
+	margin-bottom: 0px;
+	padding-top: 0px;
+	padding-top: 0px;
+	margin-top: 0px
+}
+
+.invoice {
+	font-size: 30px;
+	margin-bottom: 0px;
+	padding-top: 0px;
+	padding-top: 0px;
+	margin-top: 0px;
+	font-weight: bold;
+}
+</style>
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	$(function() {
+		$("#header").load("header");
+		$("#footer").load("footer");
+	});
+	function printDiv(divName) {
+		var printContents = document.getElementById(divName).innerHTML;
+		var originalContents = document.body.innerHTML;
+		document.body.innerHTML = printContents;
+		window.print();
+		document.body.innerHTML = originalContents;
+	}
+</script>
+</head>
+<body>
+	<div id="header"></div>
+	<div id="printableArea"
+		style="height: auto; width: 70%; margin: auto; background-color: #FAFAFA; padding: 25px">
+
+		<div style="text-align: center;">
+			<p class="header">Square Pharmacy</p>
+			<p class="address">Panthopath, Dhaka , Bangladesh</p>
+			<p class="invoice">Invoice</p>
+
+		</div>
+		<table style="width: 100%">
+			<tr bordercolor="1" style="border-bottom: 1px solid black">
+				<td style="width: 180px">Invoice Number</td>
+				<td>:</td>
+				<td style="text-align: left; width:520px" th:text="${voucherNo}"></td>
+				<td style="width: 60px">Date</td>
+				<td>:</td>
+				<td th:text="${todayDate}"></td>
+
+			</tr>
+		</table>
+
+		<table>
+			<tr>
+				<td>Customer Name </td>
+				<td>:</td>
+				<td th:text="${costomerInfo.customer_name}"></td>
+			</tr>
+			<tr>
+				<td>Mobile Number</td>
+				<td>:</td>
+				<td th:text="${costomerInfo.mobile}"></td>
+			</tr>
+			<tr>
+				<td>Address </td>
+				<td>:</td>
+				<td th:text="${costomerInfo.address}"></td>
+			</tr>
+		</table>
+
+
+		<div style="height: 500px">
+			<table style="width: 100%; border-collapse: collapse;">
+				<tr>
+					<th class=" borders">Medicine Name</th>
+					<th class=" borders " style="width: 60px">Price</th>
+					<th class=" borders " style="width: 100px">Quantity</th>
+					<th class=" borders " style="width: 110px">Sub Total</th>
+					<th class=" borders " style="width: 100px">Discount</th>
+					<th class=" borders " style="width: 90px">Total</th>
+				</tr>
+				<tr th:each="object:${voucherItem}">
+					<td class="borders" th:text="${object.medicine_name}"></td>
+					<td class="c borders" th:text="${object.price}"></td>
+					<td class="c borders" th:text="${object.quantity}"></td>
+					<td class="c borders" th:text="${object.subtotal}"></td>
+					<td class="c borders" th:text="${object.discount}"></td>
+					<td class="c borders" th:text="${object.total}"></td>
+				</tr>
+				<tr>
+					<th colspan="5" class=" borders">Grand Total</th>
+					<th class=" borders" th:text="${total}"></th>
+				</tr>
+				<tr>
+					<th colspan="5" class=" borders">Paid by Cash</th>	
+					<th class=" borders" th:text="${total}"></th>
+				</tr>
+				<tr>
+				    <th colspan="5" class=" borders">Due</th>
+					<th  class=" borders"><span style="border-bottom: double;">Nill</span></th>	
+					
+				</tr>
+			</table>
+			<p style="text-align: left; font-size: 22px" th:text="${totalInWord}"></p>
+		</div>
+
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<div style="width: 200px; margin-left: 600px">
+			<table>
+				<tr>
+					<td style="text-align: center;"><SPAN
+						STYLE="text-decoration: overline"> Bill Prepared By </SPAN></td>
+				</tr>
+				<tr>
+					<td style="text-align: center;">Md Maharam ali</td>
+				</tr>
+				<tr>
+					<td style="text-align: center;">Senior sales officer</td>
+				</tr>
+			</table>
+		</div>
+
+		<table>
+			<tr>
+				<td>Contact Us:</td>
+			</tr>
+			<tr>
+				<td>Tel: +88 02 900 8884</td>
+				<td style="padding-left: 20px">Mobile : 01710279904</td>
+				<td style="padding-left: 20px">Email : square24@gmail.com</td>
+			</tr>
+		</table>
+	</div>
+	<div>
+		<input style="margin-top: 30px; background-color: #69C8FF"
+			type="button" onclick="printDiv('printableArea')"
+			value="Print and Save" /> <br> <br>
+	</div>
+
+	<div id="footer"></div>
+</body>
+</html>

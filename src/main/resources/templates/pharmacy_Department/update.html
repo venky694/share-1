@@ -1,0 +1,71 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Update Book</title>
+
+<style type="text/css">
+tr td {
+	text-align: left;
+}
+
+td input {
+	width: 300px;
+	height: 35px;
+	font-size: 15px;
+}
+
+table tr td {
+	padding-top: 20px;
+}
+</style>
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	$(function() {
+		$("#header").load("header");
+		$("#footer").load("footer");
+	});
+</script>
+</head>
+<body>
+	<div id="header"></div>
+	<h3 style="text-align: center;">Update Medicine Information</h3>
+	<hr>
+	<div style="margin: auto; width: 35%; padding-left: 50px">
+
+		<form action="update" method="post">
+			<table th:each="object:${object}">
+				<tr>
+					<td>ID</td>
+					<td>:</td>
+					<td><input type="text" name="id" th:value="${object.id}"></td>
+				</tr>
+				<tr>
+					<td>name</td>
+					<td>:</td>
+					<td><input type="text" name="name" th:value="${object.name}"></td>
+				</tr>
+				<tr>
+					<td>Quantity</td>
+					<td>:</td>
+					<td><input type="text" name="quantity" th:value="${object.quantity}"></td>
+				</tr>
+				<tr>
+					<td>Unit Price</td>
+					<td>:</td>
+					<td><input type="text" name="price"	th:value="${object.price}"></td>
+				</tr>
+				<tr>
+					<td colspan="3" style="text-align: center; padding-top: 25px">
+						<input style="width: 100px; background-color: #4CD6F1;" type="submit" value="Update">
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<div id="footer"></div>
+</body>
+</html>

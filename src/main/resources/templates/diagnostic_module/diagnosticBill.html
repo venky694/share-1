@@ -1,0 +1,211 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Pathology test Bill</title>
+
+<style type="text/css">
+tr td {
+	text-align: left;
+	font-size: 18px
+}
+
+.hrrr {
+	height: 5px;
+	background-color: red;
+	border: none;
+}
+
+.col {
+	border: 1px solid black;
+	padding: 5px;
+}
+
+.hospitalName {
+	text-align: center;
+	font-size: 40px;
+	font-weight: bold;
+	padding-bottom: 0px;
+	margin-bottom: 0px
+}
+
+.borders {
+	border: 1px solid gray;
+	font-size: 18px;
+	padding: 3px;
+}
+
+.c {
+	text-align: center;
+}
+
+.totalRows td {
+	font-weight: bold;
+}
+</style>
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	$(function() {
+		$("#header").load("diagnosticHeader");
+		$("#footer").load("footer");
+	});
+	function printDiv(divName) {
+		var printContents = document.getElementById(divName).innerHTML;
+		var originalContents = document.body.innerHTML;
+
+		document.body.innerHTML = printContents;
+
+		window.print();
+
+		document.body.innerHTML = originalContents;
+	}
+</script>
+</head>
+<body>
+	<div id="header"></div>
+	<div id="printableArea" style="height: auto; width: 70%; margin: auto; background-color: #FAFAFA; padding: 25px" th:each="object:${object}">
+
+		<div style="width: 10%; margin-left: 20px; height: 140px; float: left;">
+
+			<img th:src="@{/photo/logo.png}" class="card-img-top" alt="photo" height="80px" width="80px">
+		</div>
+
+		<div style="width: 80%; height: 140px; float: left;">
+			<p class="hospitalName">Square Hospital Ltd</p>
+			<p style="text-align: center; font-size: 13px; margin: 0px">179/1 Panthopath, Dhaka, Bangladesh</p>
+			<p style="text-align: center; font-size: 22px; font-weight: bold;">Pathology Test Invoice</p>
+
+		</div>
+
+		<div>
+
+			<table style="width: 100%">
+				<tr style="border-bottom: 1px solid Black">
+					<td style="font-size: 25px; width: 170px">Invoice No.</td>
+					<td>:</td>
+					<td style="font-size: 25px;" th:text=${voucher_no}></td>
+					<td style="font-size: 25px; text-align: right;" th:text=${todayDate}></td>
+				</tr>
+			</table>
+
+
+			<table style="width: 100%">
+
+				<tr>
+
+					<td style="width: 170px">Patient Id</td>
+					<td>:</td>
+					<td style="width: 300px" th:text=${object.id}></td>
+					<td style="width: 110px">Patient Age</td>
+					<td>:</td>
+					<td th:text=${object.age}></td>
+
+				</tr>
+				<tr>
+					<td>Patient Name</td>
+					<td>:</td>
+					<td th:text=${object.name}></td>
+					<td>Gender</td>
+					<td>:</td>
+					<td th:text=${object.gender}></td>
+				</tr>
+				<tr>
+					<td>Mobile Number</td>
+					<td>:</td>
+					<td th:text=${object.mobile}></td>
+					<td>Problem</td>
+					<td>:</td>
+					<td th:text=${object.problem}></td>
+				</tr>
+				<tr>
+					<td>Consultant Name</td>
+					<td>:</td>
+					<td th:text=${object.doctor}></td>
+					<td>Address</td>
+					<td>:</td>
+					<td th:text=${object.address}></td>
+				</tr>
+
+
+			</table>
+		</div>
+		<div style="height: 400px">
+			<table style="width: 100%; border-collapse: collapse;">
+				<tr>
+					<th class=" borders" style="width: 100px">Serial No</th>
+					<th class=" borders">Test Name</th>
+					<th class=" borders width" style="width: 80px">Rate (tk)</th>
+					<th class=" borders width" style="width: 100px">Discount (tk)</th>
+					<th class=" borders width" style="width: 100px">Total (tk)</th>
+
+				</tr>
+				<tr th:each="object,iterator:${invoiceItem}">
+					<td style="text-align: center;" class=" borders" th:text="${iterator.index + 1}"></td>
+					<td class="borders" th:text="${object.test_name}"></td>
+					<td class="c borders" th:text="${object.rate}"></td>
+					<td class="c borders" th:text="${object.discount}"></td>
+					<td class="c borders" th:text="${object.total}"></td>
+				</tr>
+				<tr class="totalRows" th:each="object:${invoiceTotal}">
+					<td colspan="2" class="c borders">Grand Total</td>
+					<td class="c borders" th:text="${object.rate}"></td>
+					<td class="c borders" th:text="${object.discount}"></td>
+					<td class="c borders" th:text="${object.total}"></td>
+				</tr>
+				<tr class="totalRows" th:each="object:${invoiceTotal}">
+					<td colspan="4" class="c borders">Paid by cash</td>
+					<td colspan="4" class="c borders" th:text="${object.total}"></td>
+				</tr>
+				<tr class="totalRows">
+					<td colspan="4" class="c borders">Balance</td>
+					<td colspan="4" class="c borders"><span style="border-bottom: double;">Nill</span></td>
+				</tr>
+
+			</table>
+		</div>
+
+		<p style="text-align: left; font-size: 22px" th:text=${TotalInWord}></p>
+
+		<br> <br> <br> <br> <br> <br>
+
+		<div style="width: 200px; margin-left: 530px">
+			<table>
+				<tr>
+					<td style="text-align: center;"><SPAN STYLE="text-decoration: overline"> Bill Prepared By </SPAN></td>
+				</tr>
+				<tr>
+					<td style="text-align: center;">Md Maharam ali</td>
+				</tr>
+				<tr>
+					<td style="text-align: center;">Senior Receptionis</td>
+				</tr>
+			</table>
+		</div>
+
+		<table>
+			<tr>
+				<td>Contact Us:</td>
+			</tr>
+			<tr>
+				<td>Tel: +88 02 900 8884</td>
+				<td style="padding-left: 20px">Mobile : 01710279904</td>
+				<td style="padding-left: 20px">Email : square24@gmail.com</td>
+			</tr>
+
+
+		</table>
+
+
+	</div>
+	<div>
+		<input style="margin-top: 30px" type="button" onclick="printDiv('printableArea')" value="Print and Save" />
+	</div>
+
+	<h4 th:text="${msg}"></h4>
+
+	<div id="footer"></div>
+</body>
+</html>

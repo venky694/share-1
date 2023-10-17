@@ -1,0 +1,153 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Pathology test form</title>
+
+<style type="text/css">
+tr td {
+	text-align: left;
+	font-size: 18px
+}
+
+.hrrr {
+	height: 5px;
+	background-color: red;
+	border: none;
+}
+
+.col {
+	border: 1px solid black;
+	padding: 5px;
+}
+</style>
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	$(function() {
+		$("#header").load("doctorHeader");
+		$("#footer").load("footer");
+	});
+	function printDiv(divName) {
+		var printContents = document.getElementById(divName).innerHTML;
+		var originalContents = document.body.innerHTML;
+
+		document.body.innerHTML = printContents;
+
+		window.print();
+
+		document.body.innerHTML = originalContents;
+	}
+</script>
+</head>
+<body>
+	<div id="header"></div>
+	<div id="printableArea"
+		style="height: auto; width: 70%; margin: auto; background-color: #FAFAFA; padding: 25px"
+		th:each="object:${patientDetails}">
+
+		<h1 style="text-align: center;">Square Hospital Ltd</h1>
+		<h2 style="text-align: center;">Photology test</h2>
+		<h4 style="text-align: right;" th:text=${todayDate}></h4>
+
+
+		<table style="width: 100%">
+			<tr>
+				<td colspan="6" style="font-size: 25px"><u>Patient Details :</u></td>
+
+			</tr>
+			<tr>
+
+				<td>Patient Id</td>
+				<td>:</td>
+				<td th:text=${object.id}></td>
+				<td style="padding-left: 10px">Patient Age</td>
+				<td>:</td>
+				<td th:text=${object.age}></td>
+
+			</tr>
+			<tr>
+				<td>Patient Name</td>
+				<td>:</td>
+				<td th:text=${object.name}></td>
+				<td style="padding-left: 10px">Gender</td>
+				<td>:</td>
+				<td th:text=${object.gender}></td>
+			</tr>
+			<tr>
+				<td>Mobile Number</td>
+				<td>:</td>
+				<td th:text=${object.mobile}></td>
+				<td style="padding-left: 10px">Disease name</td>
+				<td>:</td>
+				<td th:text=${object.problem}></td>
+			</tr>
+			<tr>
+				<td>Consultant Name</td>
+				<td>:</td>
+				<td th:text=${object.doctor}></td>
+				<td style="padding-left: 10px">Address</td>
+				<td>:</td>
+				<td th:text=${object.address}></td>
+			</tr>
+
+
+		</table>
+		<div style="height: 560px;">
+			<table border="1" style="width: 100%; border-collapse: collapse;">
+				<tr>
+					<th class=" borders">Serial No.</th>
+					<th class="col">Test Name</th>
+				</tr>
+				<tr th:each="givenTest,iterator:${givenTest}">
+					<td class="col" style="text-align: center;"
+						th:text="${iterator.index + 1}"></td>
+					<td class="col" th:text="${givenTest.test_name}"></td>
+				</tr>
+			</table>
+		</div>
+
+
+
+		<div style="width: 250px; margin-left: 530px">
+			<table>
+				<tr>
+					<td style="text-align: center;"><SPAN
+						STYLE="text-decoration: overline"> Referred by </SPAN></td>
+				</tr>
+				<tr>
+					<td style="text-align: center;" th:text=${object.doctor}></td>
+				</tr>
+				<tr>
+					<td style="text-align: center;">Senior consultant surgery</td>
+				</tr>
+			</table>
+		</div>
+
+		<table>
+			<tr>
+				<td>Contact Us:</td>
+			</tr>
+			<tr>
+				<td>Tel: +88 02 900 8884</td>
+				<td style="padding-left: 20px">Mobile : 01710279904</td>
+				<td style="padding-left: 20px">Email : square24@gmail.com</td>
+			</tr>
+
+
+		</table>
+
+
+	</div>
+	<div>
+		<input style="margin-top: 30px" type="button"
+			onclick="printDiv('printableArea')" value="Print and Save" />
+	</div>
+
+	<h4 th:text="${msg}"></h4>
+
+	<div id="footer"></div>
+</body>
+</html>

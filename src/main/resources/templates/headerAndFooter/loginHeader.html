@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="../home-style.css">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Welcome to Spring Web MVC project</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+	crossorigin="anonymous">
+<style type="text/css">
+body {
+	background-color: #ddd;
+	text-align: center;
+}
+
+.abc {
+	color: white;
+}
+
+.abc:hover {
+	color: #CE0805;
+}
+
+.headers {
+	top: 0;
+	width: 100%;
+	position: fixed;
+	background: #2196F3;
+	color: #fff;
+	height: 50px
+}
+
+body {
+	padding-top: 60px;
+}
+
+.but:hover {
+	background-color: #E8C9F7;
+}
+
+.but {
+	border-radius: 5PX;
+}
+
+.sa {
+	margin-left: 50%;
+}
+</style>
+</head>
+
+<body>
+	<div class="headers">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container-fluid headers">
+				<button class="navbar-toggler" type="button"
+					data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+						<li class="abc"><a aria-current="page" href="index">Home</a></li>
+					</ul>
+					<form class="d-flex" method="post" action="search">
+						<input class="form-control me-2"  type="search"	placeholder="Search" name="name" aria-label="Search">
+						<button class="btn btn-outline-success abc" type="submit">Search</button>
+					</form>
+				</div>
+			</div>
+		</nav>
+	</div>
+</body>
+</html>
